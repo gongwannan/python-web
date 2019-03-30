@@ -9,6 +9,43 @@
 {#    <div style="position:absolute;z-index:-1;width:100%;height:100%;">#}
 {#        <img src="/static/images/beijing.png" width="100%" height="100%"/>#}
 {#    </div>#}
+
+<!DOCTYPE HTML>
+<html>
+<style type="text/css">
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    video {
+        position: fixed;
+        right: 0px;
+        bottom: 0px;
+        min-width: 100%;
+        min-height: 100%;
+        height: auto;
+        width: auto;
+        /*加滤镜*/
+        -webkit-filter: grayscale(100%);
+        filter: grayscale(100%);
+        z-index: -11
+    }
+
+    source {
+        min-width: 100%;
+        min-height: 100%;
+        height: auto;
+        width: auto;
+    }
+</style>
+<body>
+<video autoplay loop="loop">
+    <source src="/static/video/video.mp4" type="video/mp4">
+</video>
+<button></button>
+</body>
+</html>
     <div class="container">
         <div class="col-md-4 col-md-offset-4">
             <form class='form-login' action="/login/" method="post">

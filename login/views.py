@@ -103,9 +103,10 @@ def hash_code(s, salt='mysite'):  # 加点盐
 
 
 def test(request):
-    pass
-    return redirect('/test/')
+    return render(request, 'login/test.html')
 
+def huanying(request):
+    return render(request,'login/huanying.html')
 
 def make_confirm_string(user):
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
