@@ -360,7 +360,7 @@
                     <a href="contact.html">联系我们</a>
                     <a href="">媒体采访</a>
                 </div>
-                <div class="foot-c fl"><a href=""><img src="/static/images/foot-logo.jpg"></a></div>
+
                 <div class="foot-right fr">
                     <a href="">同城活动</a>
                     <a href="">课程资讯</a>
@@ -373,81 +373,9 @@
     </div>
 
 
-    <div class="mask"></div>
-    <div class="login">
-        <div class="login-title">
-            <div class="login-a">登录</div>
-            <div class="login-b"></div>
-            <div class="login-c close">x</div>
-        </div>
-        <div class="login-btm">
-            <div class="login-d"><input type="text" class="login-text" placeholder="注册时填写的邮箱"></div>
-            <div class="login-d"><input type="password" class="login-pas" placeholder="密码"></div>
-            <div class="login-d"><input type="button" class="login-btn" placeholder="登录"></div>
-            <div class="login-f">
-                <a href="">忘记密码</a>
-                <span>还没有焦点账号?><a href="javascript:;" class="reg-href">点击注册</a></span>
-            </div>
-        </div>
-    </div>
 
-    <div class="reg">
-        <div class="login-title">
-            <div class="login-a">注册</div>
-            <div class="login-b"></div>
-            <div class="login-c close">x</div>
-        </div>
-        <div class="login-btm">
-            <div class="login-d"><input type="text" class="login-text" placeholder="邮箱/手机号"></div>
-            <div class="login-d"><input type="password" class="login-pas" placeholder="密码"></div>
-            <div class="login-d"><input type="button" class="login-btn" placeholder="注册"></div>
-            <div class="login-f">
-                <a href="">忘记密码</a>
-            </div>
-        </div>
-    </div>
 
-    <script src="js/jquery-1.11.1.min.js"></script>
-    <script src="js/jquery.SuperSlide.2.1.1.js"></script>
-    <script src="js/Action.js"></script>
 
-    <script type="text/javascript">
-        $(function () {
-            var nav = $(".header"); //得到导航对象
-            var win = $(window); //得到窗口对象
-            var sc = $(document);//得到document文档对象。
-            win.scroll(function () {
-                if (sc.scrollTop() >= 580) {
-                    nav.addClass("head-cut");
-                    $(".head-cut").fadeIn(500);
-                } else {
-                    nav.removeClass("head-cut");
-                    $(".head-cut").fadeOut(500);
-                }
-            })
-        })
-    </script>
-    <script type="text/javascript">
-        $(function ($) {
-            $(".fullSlide").slide({
-                titCell: ".hbox ul",
-                mainCell: ".box ul",
-                effect: "fold",
-                mouseOverStop: false,
-                autoPlay: true,
-                autoPage: true,
-                trigger: "click",
-                startFun: function (i) {
-                    var curLi = jQuery(".fullSlide .bd li").eq(i);
-                    if (!!curLi.attr("_src")) {
-                        curLi.css("background-image", curLi.attr("_src")).removeAttr("_src")
-                    }
-                }
-            });
-
-        });
-
-    </script>
     </body>
     </html>
 
