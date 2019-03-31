@@ -27,5 +27,5 @@ urlpatterns = [
     url(r'^captcha', include('captcha.urls')),
     path('confirm/', views.user_confirm),
     path('test/',views.test),
-    path('huanying/',views.huanying)
+    path('',views.huanying)
 ]
