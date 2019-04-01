@@ -19,13 +19,11 @@ from login import views
 from django.urls import path
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('index/',views.index),
+    path('login/',include('login.urls')),
+    path('/news',include('news.urls')),
     path('login/',views.login),
-    path('register/',views.register),
-    path('logout/',views.logout),
+    path('index/',views.index),
+    path('admin/', admin.site.urls),
     url(r'^captcha', include('captcha.urls')),
-    path('confirm/', views.user_confirm),
-    path('test/',views.test),
     path('',views.huanying)
 ]

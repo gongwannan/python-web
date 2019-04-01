@@ -1,33 +1,6 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="zh-CN">
-<style type="text/css">
-    * {
-        margin: 0px;
-        padding: 0px;
-    }
-
-    video {
-        position: fixed;
-        right: 0px;
-        bottom: 0px;
-        min-width: 100%;
-        min-height: 100%;
-        height: auto;
-        width: auto;
-        /*加滤镜*/
-        -webkit-filter: grayscale(100%);
-        filter: grayscale(100%);
-        z-index: -11
-    }
-
-    source {
-        min-width: 100%;
-        min-height: 100%;
-        height: auto;
-        width: auto;
-    }
-</style>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -93,10 +66,10 @@
             <ul class="nav navbar-nav navbar-right">
                 {% if request.session.is_login %}
                     <li><a href="/usermessage/">当前在线：{{ request.session.user_name }}</a></li>
-                    <li><a href="/logout/">登出</a></li>
+                    <li><a href="/login/logout/">登出</a></li>
                 {% else %}
                     <li><a href="/login/">登录</a></li>
-                    <li><a href="/register/">注册</a></li>
+                    <li><a href="/login/register/">注册</a></li>
                 {% endif %}
             </ul>
         </div><!-- /.navbar-collapse -->
