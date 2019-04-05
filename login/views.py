@@ -10,14 +10,11 @@ from . import forms
 
 
 # Create your views here.
-def index(request):
-    pass
-    return render(request, 'login/index.html')
 
 
 def login(request):
     if request.session.get('is_login', None):
-        return redirect("/index/")
+        return redirect("/news/news/")
     if request.method == "POST":
         login_form = forms.UserForm(request.POST)
         message = "请检查填写的内容！"
@@ -33,7 +30,7 @@ def login(request):
                     request.session['is_login'] = True
                     request.session['user_id'] = user.id
                     request.session['user_name'] = user.name
-                    return redirect('/index/')
+                    return redirect('/news/news/')
                 else:
                     message = "密码不正确！"
             except:
@@ -90,9 +87,9 @@ def register(request):
 
 def logout(request):
     if not request.session.get('is_login', None):
-        return redirect('/index/')
+        return redirect('/news/news/')
     request.session.flush()
-    return redirect("/index/")
+    return redirect("/news/news/")
 
 
 def hash_code(s, salt='mysite'):  # 加点盐

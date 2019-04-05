@@ -15,15 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from  django.conf.urls import url,include
-from login import views
 from django.urls import path
+from login import views
 
 urlpatterns = [
+    path('luntan/',include('luntan.urls')),
     path('login/',include('login.urls')),
-    path('/news',include('news.urls')),
-    path('login/',views.login),
-    path('index/',views.index),
+    path('news/',include('news.urls')),
     path('admin/', admin.site.urls),
     url(r'^captcha', include('captcha.urls')),
-    path('',views.huanying)
+    path('',views.huanying),
+    path('login/',views.login),
 ]

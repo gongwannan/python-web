@@ -1,0 +1,284 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}主页{% endblock %}
+{% load static %
+{% block css %}
+
+{% endblock %}
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+    <style>
+        body {
+            background-repeat: no-repeat;
+            background-size: 100%, 100%;
+            background-attachment: fixed;
+        }
+    </style>
+    <style>
+        a:link {
+            color: black;
+        }
+
+        /* 未被访问的链接 */
+        a:visited {
+            color: black;
+        }
+
+        /* 已被访问的链接 */
+        a:hover {
+            color: #FF00FF;
+        }
+
+        /* 鼠标指针移动到链接上 */
+        a:active {
+            color: black;
+        }
+
+        left:
+
+        50
+        %
+        ;
+
+        /* 正在被点击的链接 */
+
+    </style>
+    {#<body background="/static/images/timg.jpeg">#}
+    {##}
+    {#</body>#}
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="/news/news/">主页</a>
+                    </li>
+                    <li>
+                        <a href="/news/news/">新闻</a>
+                    </li>
+                    <li class="active">
+                        Data
+                    </li>
+                </ul>
+                {% if request.session.is_login %}
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4>
+                            提示!
+                        </h4> 你好,<strong>{{ request.session.user_name }}</strong>！欢迎回来！{{ count }}
+                    </div>
+                {% else %}
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4>
+                            提示!
+                        </h4> 您尚未登录只能访问公开内容! <a href="/login/" class="alert-link">登录</a>
+                    </div>
+                {% endif %}
+                <div class="row clearfix">
+                    <div class="col-md-2 column">
+                        <ul>
+                            <li class="active">
+                                <a href="https://news.qq.com/">新闻热点</a>
+                            </li>
+                            <li>
+                                <a href="news.html">行业要闻</a>
+                            </li>
+                            <li>
+                                <a href="#">前景发展</a>
+                            </li>
+                            <li>
+                                <a href="#">今日推荐</a>
+                            </li>
+                            <li>
+                                <a href="news.html">关注</a>
+                            </li>
+                            <li>
+                                <a href="">专题</a>
+                            </li>
+                            <li>
+                                <a href="">程序人生</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-7 column">
+                        <div class="carousel slide" id="carousel-609156">
+                            <ol class="carousel-indicators">
+                                <li class="active" data-slide-to="0" data-target="#carousel-609156">
+                                </li>
+                                <li data-slide-to="1" data-target="#carousel-609156">
+                                </li>
+                                <li data-slide-to="2" data-target="#carousel-609156">
+                                </li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <img alt="" src="/static/images/theme1.png"/>
+                                    <div class="carousel-caption">
+                                        <h4>
+                                            GitHub 近 100,000 程序员“起义”：向“996”开炮！
+                                        </h4>
+                                        <p>
+
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img alt="" src="/static/images/theme2.jpeg"/>
+                                    <div class="carousel-caption">
+                                        <h4>
+                                            码农千千万,作为一个当代大学生我们应该学好哪些知识?
+                                        </h4>
+                                        <p>
+
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img alt="" src="/static/images/theme3.jpeg"/>
+                                    <div class="carousel-caption">
+                                        <h4>
+                                            黑客少年手机编 10 万行代码，恶意篡改 App 只为了 “炫技”？
+                                        </h4>
+                                        <p>
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="left carousel-control" href="#carousel-609156" data-slide="prev"><span
+                                    class="glyphicon glyphicon-chevron-left"></span></a> <a
+                                class="right carousel-control" href="#carousel-609156" data-slide="next"><span
+                                class="glyphicon glyphicon-chevron-right"></span></a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="thumbnail">
+                            <a href="news.html">
+                                <img alt="300x200" src="/static/images/2.png"/>
+                            </a>
+                            <div class="carousel-caption">
+                                <h4>
+
+                                </h4>
+                                <p>
+
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="thumbnail">
+                            <a href="news.html">
+                                <img alt="300x200" src="/static/images/1.jpg"/>
+                            </a>
+                            <div class="carousel-caption">
+                                <h4>
+
+                                </h4>
+                                <p>
+
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-9">
+                        {% for new in news_list1 %}
+
+                            <div class="thumbnail">
+
+                                <div class="caption">
+                                    <a href="#">
+
+                                        <strong>{{ new.title }}</strong>
+                                    </a>
+                                    <p>{{ new.name }}__{{ new.p_time }}</p>
+
+
+                                    <p>
+                                        {#                                        {{ new.content }}#}
+                                    </p>
+                                    <p>
+                                        <a href="/news/new/">了解详情</a>
+                                    </p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="col-md-3">
+                        <h4>今日推荐</h4>
+                        {% for commend in commend_list %}
+                            <div class="thumbnail">
+                                <a href="">
+                                    <img alt="300x200" src="/static/images/{{ commend.img }}"/>
+                                </a>
+                                <div class="caption">
+
+                                    <p>
+                                        <strong>{{ commend.title }}</strong>
+                                    </p>
+
+                                </div>
+                            </div>
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>
+            <div class="row clearfix">
+
+                <div class="text-center">
+                    <ul class="pagination">
+                        <li>
+                            <a href="/news/news/">首页</a>
+                        </li>
+                        <li>
+                            <a href="/news/news/">1</a>
+                        </li>
+                        <li>
+                            <a href="/news/news/">2</a>
+                        </li>
+                        <li>
+                            <a href="/news/news/">3</a>
+                        </li>
+                        <li>
+                            <a href="/news/news/">4</a>
+                        </li>
+                        <li>
+                            <a href="/news/news/">Next</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4 column">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row clearfix">
+                <div class="text-center ">
+                    <div id="footer">
+                        <div class="footerNav">
+                            <a href="#">关于我们</a> | <a href="#">服务条款</a> | <a href="#">免责声明</a> | <a href="#">网站地图</a> |
+                            <a
+                                    href="#">联系我们</a>
+                        </div>
+                        <div class="copyRight">
+                            Copyright ©2010-2014 我的个人站点 版权所有
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </html>
+{% endblock %}
