@@ -19,11 +19,12 @@ from django.urls import path
 from login import views
 
 urlpatterns = [
-    path('luntan/',include('luntan.urls')),
-    path('login/',include('login.urls')),
-    path('news/',include('news.urls')),
+    path('luntan/', include('luntan.urls')),
+    path('login/', include('login.urls')),
+    path('news/', include('news.urls')),
     path('admin/', admin.site.urls),
     url(r'^captcha', include('captcha.urls')),
-    path('',views.huanying),
-    path('login/',views.login),
+    url(r'^tinymce/', include('tinymce.urls')),
+    path('', views.huanying),
+    path('login/', views.login),
 ]

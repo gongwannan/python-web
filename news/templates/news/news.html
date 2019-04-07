@@ -195,19 +195,17 @@
                             <div class="thumbnail">
 
                                 <div class="caption">
-                                    <a href="#">
+                                    <a href="/news/new/{{ new.id }}">
 
                                         <strong>{{ new.title }}</strong>
                                     </a>
                                     <p>{{ new.name }}__{{ new.p_time }}</p>
 
-
+                                    <div class="summary oneline">
                                     <p>
-                                        {#                                        {{ new.content }}#}
+                                        {{ new.contenthead }}
                                     </p>
-                                    <p>
-                                        <a href="/news/new/">了解详情</a>
-                                    </p>
+                                    </div>
                                 </div>
                             </div>
                         {% endfor %}
@@ -240,7 +238,7 @@
                 <div class="text-center">
                     <ul class="pagination">
                         <li>
-                            <a href="/news/news/">首页</a>
+                            <a href="/news/news/">上一页</a>
                         </li>
                         <li>
                             <a href="/news/news/">1</a>
@@ -255,7 +253,7 @@
                             <a href="/news/news/">4</a>
                         </li>
                         <li>
-                            <a href="/news/news/">Next</a>
+                            <a href="/news/news/">下一页</a>
                         </li>
                     </ul>
                 </div>

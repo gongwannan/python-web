@@ -5,7 +5,7 @@ from django.urls import path
 from . import views
 
 urlpatterns =[
-    path('news/',views.news),
-    path('new/',views.new),
+    path('news/', views.news),
+    path('new/<int:id>', views.new),
 
 ]
