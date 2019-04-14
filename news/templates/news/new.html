@@ -60,13 +60,13 @@
             <div class="col-md-2 column">
                 <div class="thumbnail">
 
-                    <img alt="300x200" src="/static/images/{{ new.img }}"/>
+                    <img alt="300x200" src="/static/images/{{ new.author.img }}"/>
 
                     <div class="caption">
 
                         <p>
-                            <a href="#"><strong>{{ new.name }}</strong></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                            <button href="">关注</button>
+                            <a href="#"><strong>{{ new.author.name }}</strong></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button href="">关注</button>
                         </p>
 
                     </div>
@@ -77,7 +77,8 @@
             </div>
             <div class="col-md-9 column">
                 <hr>
-                    {{ new.content|linebreaksbr}}
+                <div id="blog-content"></div>
+
                 <hr>
             </div>
 
@@ -111,5 +112,10 @@
             </div>
         </div>
     </div>
+
+{% endblock %}
+
+{%  block bottomscript %}
+    $("#blog-content").html("{{ new.content|safe }}");
 
 {% endblock %}

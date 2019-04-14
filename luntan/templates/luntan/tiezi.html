@@ -53,9 +53,13 @@
                 </ul>
                 <div class="row clearfix">
                     <div class="col-md-9 column">
-
+                        <p>
+                            楼主
+                        </p>
+                        <hr>
                         <div class="row clearfix">
                             <div class="col-md-3 column">
+
                                 <div class="thumbnail">
                                     <img alt="300x200"
                                          src="/static/images/{{ tiezi.img }}"/>
@@ -111,6 +115,7 @@
                                         <div>
 
 
+
                                             {{ pinlun_form.content.label_tag }}
 
                                             <textarea class="vLargeTextField tinymce" cols="40"
@@ -120,12 +125,13 @@
                                             </textarea>
 
 
+
                                         </div>
                                     </div>
 
 
                                     <button type="reset" class="btn btn-default pull-left">重置</button>
-                                    <button type="submit" class="btn btn-primary pull-right">提交</button>
+                                    <button type="submit" class="btn btn-primary pull-right">发表</button>
 
                                 </form>
 
@@ -154,4 +160,20 @@
             </div>
         </div>
     </div>
+    <div class="container">
+        <div class="row clearfix">
+            <div class="text-center ">
+                <div id="footer">
+                    <div class="footerNav">
+                        <a href="#">关于我们</a> | <a href="#">服务条款</a> | <a href="#">免责声明</a> | <a href="#">网站地图</a> |
+                        <a
+                                href="#">联系我们</a>
+                    </div>
+                    <div class="copyRight">
+                        Copyright ©2010-2014 我的个人站点 版权所有
+                    </div>
+                </div>
+
+            </div>
+        </div>
 {% endblock %}

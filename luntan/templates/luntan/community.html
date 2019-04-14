@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% block title %}论坛{% endblock %}
 {% block content %}
+
     <style>
         a:link {
             color: black;
@@ -36,13 +37,21 @@
             <div class="col-md-12 column">
                 <ul class="breadcrumb">
                     <li>
-                        <a href="/news/news/">主页</a>
+                        <a href="/luntan/community/">论坛首页</a>
                     </li>
+                    <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">精选板块 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
                     <li>
-                        <a href="/news/news/">新闻</a>
-                    </li>
-                    <li class="active">
-                        Data
+                        <a href="/luntan/post/"><button class="btn-danger">我要发帖</button></a>
                     </li>
                 </ul>
                 {% if request.session.is_login %}
@@ -148,25 +157,25 @@
                                                 </th>
                                             </tr>
                                             </thead>
-                                        {% for tiezi in tiezi_list %}
-                                            <tbody>
-                                            <tr>
-                                                <td>
-                                                    {{ tiezi.id }}
-                                                </td>
-                                                <td>
-                                                    <a href="/luntan/tiezi/{{ tiezi.id }}">{{ tiezi.title }}</a>
-                                                </td>
-                                                <td>
-                                                    {{ tiezi.p_time }}
-                                                </td>
-                                                <td>
-                                                    Default
-                                                </td>
-                                            </tr>
+                                            {% for tiezi in tiezi_list %}
+                                                <tbody>
+                                                <tr>
+                                                    <td>
+                                                        {{ tiezi.id }}
+                                                    </td>
+                                                    <td>
+                                                        <a href="/luntan/tiezi/{{ tiezi.id }}">{{ tiezi.title }}</a>
+                                                    </td>
+                                                    <td>
+                                                        {{ tiezi.p_time }}
+                                                    </td>
+                                                    <td>
 
-                                            </tbody>
-                                        {% endfor %}
+                                                    </td>
+                                                </tr>
+
+                                                </tbody>
+                                            {% endfor %}
                                         </table>
                                         </p>
                                     </div>
@@ -257,66 +266,67 @@
                         </div>
                         <div class="col-md-8 column">
                             <table class="table table-striped">
-                                            <thead>
-                                            <tr>
-                                                <th>
-                                                    主题
-                                                </th>
-                                                <th>
-                                                    作者
-                                                </th>
-                                                <th>
-                                                    发表时间
-                                                </th>
-                                                <th>
-                                                    访问/评论
-                                                </th>
-                                            </tr>
-                                            </thead>
+                                <thead>
+                                <tr>
+                                    <th>
+                                        主题
+                                    </th>
+                                    <th>
+                                        作者
+                                    </th>
+                                    <th>
+                                        发表时间
+                                    </th>
+                                    <th>
+                                        访问/评论
+                                    </th>
+                                </tr>
+                                </thead>
                                 {% for tiezi in tiezi_list %}
-                                            <tbody>
-                                            <tr>
-                                                <td>
-                                                    <a href="/luntan/tiezi/{{ tiezi.id }}">{{ tiezi.title }}</a>
-                                                </td>
-                                                <td>
-                                                    {{ tiezi.name }}
-                                                </td>
-                                                <td>
-                                                    {{ tiezi.p_time }}
-                                                </td>
-                                                <td>
-                                                    Default
-                                                </td>
-                                            </tr>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <a href="/luntan/tiezi/{{ tiezi.id }}">{{ tiezi.title }}</a>
+                                        </td>
+                                        <td>
+                                            {{ tiezi.name }}
+                                        </td>
+                                        <td>
+                                            {{ tiezi.p_time }}
+                                        </td>
+                                        <td>
+                                            Default
+                                        </td>
+                                    </tr>
 
-                                            </tbody>
+                                    </tbody>
                                 {% endfor %}
-                                        </table>
+                            </table>
 
                         </div>
                         <div class="col-md-2 column">
                             <h4>推荐新闻</h4>
                             {% for new in commend_list %}
-                            <div class="thumbnail">
-                                <img alt="300x200"
-                                     src="/static/images/{{ new.img }}"/>
-                                <div class="caption">
-                                    <h3>
+                                <div class="thumbnail">
+                                    <img alt="300x200"
+                                         src="/static/images/{{ new.img }}"/>
+                                    <div class="caption">
+                                        <h3>
 
-                                    </h3>
-                                    <p>
-                                        {{ new.title }}
-                                    </p>
-                                    <p>
+                                        </h3>
+                                        <p>
+                                            {{ new.title }}
+                                        </p>
+                                        <p>
 
-                                    </p>
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
                             {% endfor %}
                         </div>
                     </div>
                 </div>
+
 
 
 {% endblock %}

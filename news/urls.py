@@ -7,5 +7,7 @@ from . import views
 urlpatterns =[
     path('news/', views.news),
     path('new/<int:id>', views.new),
+    path('firenews/', views.rdnews),
+    path('hangyenews/', views.hynews),
 
 ]
