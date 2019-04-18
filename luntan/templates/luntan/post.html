@@ -69,6 +69,7 @@
                     </div>
                     <div class="col-md-8 column">
                         <form class="tiezi_form" , action="/luntan/post/" , method="post">
+                            {% csrf_token %}
                             <div class="form-group">
                                 {{ tiezi_form.title.label_tag }}
                                 <input type="text" name="title" id="id_title" maxlength="256" required

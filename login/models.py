@@ -39,3 +39,10 @@ class ConfirmString(models.Model):
         ordering = ["-c_time"]
         verbose_name = "确认码"
         verbose_name_plural = "确认码"
+
+class Usermessage(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    birthday = models.DateTimeField()
+    jianjie = models.TextField(max_length=2000)
+    diqu = models.CharField(max_length=128)
+    touxiang = models.CharField

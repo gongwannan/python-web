@@ -143,35 +143,33 @@
                                         <table class="table table-striped">
                                             <thead>
                                             <tr>
-                                                <th>
-                                                    编号
-                                                </th>
+
                                                 <th>
                                                     题目
                                                 </th>
                                                 <th>
+                                        作者
+                                    </th>
+                                                <th>
                                                     发表时间
                                                 </th>
-                                                <th>
-                                                    最后一次评论时间
-                                                </th>
+
                                             </tr>
                                             </thead>
-                                            {% for tiezi in tiezi_list %}
+                                            {% for tiezi in tiezi_list1 %}
                                                 <tbody>
                                                 <tr>
-                                                    <td>
-                                                        {{ tiezi.id }}
-                                                    </td>
+
                                                     <td>
                                                         <a href="/luntan/tiezi/{{ tiezi.id }}">{{ tiezi.title }}</a>
                                                     </td>
                                                     <td>
-                                                        {{ tiezi.p_time }}
+                                                        {{ tiezi.name }}
                                                     </td>
                                                     <td>
-
+                                                        {{ tiezi.p_time }}
                                                     </td>
+
                                                 </tr>
 
                                                 </tbody>
@@ -184,37 +182,36 @@
                                         <table class="table table-striped">
                                             <thead>
                                             <tr>
-                                                <th>
-                                                    编号
-                                                </th>
+
                                                 <th>
                                                     题目
                                                 </th>
                                                 <th>
-                                                    发表时间
-                                                </th>
+                                        作者
+                                    </th>
                                                 <th>
-                                                    最后一次评论时间
+                                                    发表时间
                                                 </th>
                                             </tr>
                                             </thead>
+                                        {% for tiezi in tiezi_list2 %}
                                             <tbody>
                                             <tr>
+
                                                 <td>
-                                                    1
+                                                    <a href="/luntan/tiezi/{{ tiezi.id }}">{{ tiezi.title }}</a>
                                                 </td>
                                                 <td>
-                                                    <a>TB - Monthly</a>
+                                                    {{ tiezi.name }}
                                                 </td>
                                                 <td>
-                                                    01/04/2012
+                                                    {{ tiezi.p_time }}
                                                 </td>
-                                                <td>
-                                                    Default
-                                                </td>
+
                                             </tr>
 
                                             </tbody>
+                                        {% endfor %}
                                         </table>
                                         </p>
                                     </div>
@@ -246,6 +243,19 @@
                                     </div>
                                     <div id="panel-element-698628" class="panel-collapse in">
                                         <div class="panel-body">
+                                            <li><a href="#">移动开发</a></li>
+                                            <li><a href="#">人工智能</a></li>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <a class="panel-title collapsed" data-toggle="collapse"
+                                           data-parent="#panel-340324"
+                                           href="#panel-element-423067">移动开发</a>
+                                    </div>
+                                    <div id="panel-element-423067" class="panel-collapse collapse">
+                                        <div class="panel-body">
                                             Anim pariatur cliche...
                                         </div>
                                     </div>
@@ -254,9 +264,21 @@
                                     <div class="panel-heading">
                                         <a class="panel-title collapsed" data-toggle="collapse"
                                            data-parent="#panel-340324"
-                                           href="#panel-element-423067">1</a>
+                                           href="#panel-element-654321">游戏开发</a>
                                     </div>
-                                    <div id="panel-element-423067" class="panel-collapse collapse">
+                                    <div id="panel-element-654321" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            Anim pariatur cliche...
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <a class="panel-title collapsed" data-toggle="collapse"
+                                           data-parent="#panel-340324"
+                                           href="#panel-element-123456">人工智能</a>
+                                    </div>
+                                    <div id="panel-element-123456" class="panel-collapse collapse">
                                         <div class="panel-body">
                                             Anim pariatur cliche...
                                         </div>
@@ -282,7 +304,7 @@
                                     </th>
                                 </tr>
                                 </thead>
-                                {% for tiezi in tiezi_list %}
+                                {% for tiezi in tiezi_list3 %}
                                     <tbody>
                                     <tr>
                                         <td>
@@ -295,7 +317,7 @@
                                             {{ tiezi.p_time }}
                                         </td>
                                         <td>
-                                            Default
+                                            {{ tiezi.fangwenshu }}/ {{ tiezi.pingluns.all | length }}
                                         </td>
                                     </tr>
 

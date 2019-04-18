@@ -77,6 +77,18 @@
                                 </h4>
                             </div>
                         </div>
+                    <div class="row clearfix">
+                                        <div class="col-md-3">
+
+                                        </div>
+                                        <div class="col-md-9">
+                                            <p>
+
+                                                <div>{{ pinglun.p_time }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">回复</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">举报</a><a href="#"  style="float:right;">只看楼主</a></div>
+                                            </p>
+                                            <hr>
+                                        </div>
+                                    </div>
 
                         <hr>
                         <div class="row clearfix">
@@ -91,7 +103,7 @@
                                                 <img alt="300x200" src="/static/images/{{ pinglun.img }}"/>
                                                 <div class="caption">
                                                     <p>
-                                                        {{ pinglun.name }} {{ pinglun.p_time }}
+                                                        {{ pinglun.name }}
                                                     </p>
 
                                                 </div>
@@ -103,6 +115,19 @@
                                             </h4>
                                         </div>
                                     </div>
+                                    <div class="row clearfix">
+                                        <div class="col-md-3">
+
+                                        </div>
+                                        <div class="col-md-9">
+                                            <p>
+
+                                                <div>{{ pinglun.p_time }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">回复</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">举报</a><a href="#"  style="float:right;">只看他</a></div>
+                                            </p>
+                                            <hr>
+                                        </div>
+                                    </div>
+                                    <hr>
                                 {% endfor %}
                             </div>
                         </div>
@@ -110,10 +135,9 @@
                         <div class="row clearfix">
                             <div class="col-md-12 column">
                                 <form class='form-pinglun' action="/luntan/tiezi/{{ tiezi.id }}" method="post">
-
+                                    {% csrf_token %}
                                     <div class="form-group">
                                         <div>
-
 
 
                                             {{ pinlun_form.content.label_tag }}
@@ -123,7 +147,6 @@
                                                       id="id_content" maxlength="21845" name="content" rows="10">
 
                                             </textarea>
-
 
 
                                         </div>
