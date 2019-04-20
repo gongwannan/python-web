@@ -12,5 +12,6 @@ urlpatterns =[
     path('logout/',views.logout),
     path('confirm/', views.user_confirm),
     path('test/',views.test),
+    path('usermessage/', views.usermessage)
 
 ]

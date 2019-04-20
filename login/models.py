@@ -43,6 +43,7 @@ class ConfirmString(models.Model):
 class Usermessage(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     birthday = models.DateTimeField()
+    job= models.CharField(max_length=128,default='无')
     jianjie = models.TextField(max_length=2000)
     diqu = models.CharField(max_length=128)
     touxiang = models.CharField

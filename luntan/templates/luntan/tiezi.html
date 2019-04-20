@@ -26,29 +26,23 @@
     <div class="container">
         <div class="row clearfix">
             <div class="col-md-12 column">
-                <ul class="nav nav-tabs">
-                    <li class="active">
+                 <ul class="breadcrumb">
+                    <li>
                         <a href="/luntan/community/">论坛首页</a>
                     </li>
-                    <li class="dropdown pull-right">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">精选版块<strong
-                                class="caret"></strong></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="#">Java开发</a>
-                            </li>
-                            <li>
-                                <a href="#">web开发</a>
-                            </li>
-                            <li>
-                                <a href="#">python开发</a>
-                            </li>
-                            <li class="divider">
-                            </li>
-                            <li>
-                                <a href="#">Linux/Unix社区</a>
-                            </li>
-                        </ul>
+                    <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">精选板块 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
+                    <li>
+                        <a href="/luntan/post/"><button class="btn-danger">我要发帖</button></a>
                     </li>
                 </ul>
                 <div class="row clearfix">
@@ -65,7 +59,7 @@
                                          src="/static/images/{{ tiezi.img }}"/>
                                     <div class="caption">
                                         <p>
-                                            {{ tiezi.name }}{{ tiezi.p_time }}
+                                            {{ tiezi.name }}
                                         </p>
 
                                     </div>
@@ -84,7 +78,7 @@
                                         <div class="col-md-9">
                                             <p>
 
-                                                <div>{{ pinglun.p_time }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">回复</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">举报</a><a href="#"  style="float:right;">只看楼主</a></div>
+                                                <div>{{ tiezi.p_time }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">回复</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">举报</a><a href="#"  style="float:right;">只看楼主</a></div>
                                             </p>
                                             <hr>
                                         </div>
@@ -111,7 +105,9 @@
                                         </div>
                                         <div class="col-md-9 column">
                                             <h4>
+                                                {% autoescape off %}
                                                 {{ pinglun.content }}
+                                                {% endautoescape %}
                                             </h4>
                                         </div>
                                     </div>

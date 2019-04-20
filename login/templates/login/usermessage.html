@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    用户信息
+{% endblock %}
+{% block content %}
+    <style>
+        a:link {
+            color: blue;
+        }
+
+        /* 未被访问的链接 */
+        a:visited {
+            color: darkblue;
+        }
+
+        /* 已被访问的链接 */
+        a:hover {
+            color: #FF00FF;
+        }
+
+        /* 鼠标指针移动到链接上 */
+        a:active {
+            color: purple;
+        }
+
+        left:
+
+        50
+        %
+        ;
+
+        /* 正在被点击的链接 */
+
+    </style>
+
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <div class="row clearfix">
+                    <div class="col-md-2 column">
+                        <ul class="nav nav-list">
+
+                            <li class="active">
+                                <a href="#">个人资料</a>
+                            </li>
+                            <li>
+                                <a href="#">我的收藏</a>
+                            </li>
+                            <li>
+                                <a href="#">我的关注</a>
+                            </li>
+                            <li>
+                                <a href="#">我的粉丝</a>
+                            </li>
+                            <li>
+                                <a href="#">我的博客</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-10 column">
+                        <div class="row clearfix">
+                            <div class="col-md-3 column">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="thumbnail">
+                                            <img alt="300x200"
+                                                 src="/static/images/c2.jpeg"/>
+                                            <div class="caption">
+                                                <p class="text-center">
+                                                    <a href="#">修改头像</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9 column">
+                                <p>ID:</p>
+                                <p>关注:粉丝:</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

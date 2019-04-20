@@ -153,3 +153,7 @@ def user_confirm(request):
         confirm.delete()
         message = '感谢确认，请使用账户登录！'
         return render(request, 'login/confirm.html', locals())
+
+def usermessage(request):
+    pass
+    return render(request, 'login/usermessage.html', locals())

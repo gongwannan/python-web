@@ -35,17 +35,7 @@
     <div class="container">
         <div class="row clearfix">
             <div class="col-md-12 column">
-                <ul class="breadcrumb">
-                    <li>
-                        <a href="#">主页</a>
-                    </li>
-                    <li>
-                        <a href="#">新闻</a>
-                    </li>
-                    <li class="active">
-                        Data
-                    </li>
-                </ul>
+
 
             </div>
         </div>
@@ -77,8 +67,9 @@
             </div>
             <div class="col-md-9 column">
                 <hr>
-                <div id="blog-content"></div>
-
+                {% autoescape off %}
+                    {{ new.content }}
+                {% endautoescape %}
                 <hr>
             </div>
 
@@ -112,10 +103,5 @@
             </div>
         </div>
     </div>
-
-{% endblock %}
-
-{%  block bottomscript %}
-    $("#blog-content").html("{{ new.content|safe }}");
 
 {% endblock %}
