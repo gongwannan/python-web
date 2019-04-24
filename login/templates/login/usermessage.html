@@ -60,7 +60,7 @@
                     </div>
                     <div class="col-md-10 column">
                         <div class="row clearfix">
-                            <div class="col-md-3 column">
+                            <div class="col-md-2 column">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="thumbnail">
@@ -75,9 +75,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-9 column">
-                                <p>ID:</p>
-                                <p>关注:粉丝:</p>
+                            <div class="col-md-10 column">
+                                <p>ID: {{ user.name }}<a href="#" style="float:right;">个人主页></a></p>
+                                <p>关注:{{ user.follows.all|length }}粉丝:{{ user.fans.all|length }}</p>
+                                <hr>
+                                <p>昵称:{{ user.name }} <a href="#" style="float: right;">修改资料</a></p>
+                                <p>实名:{{ user.truename }}</p>
+                                <p>性别:{{ user.sex }}</p>
+                                <p>生日:{{ user.birthday }}</p>
+                                <p>地区:{{ user.diqu }}</p>
+                                <p>行业:{{ user.job }}</p>
+                                <p>简介:{{ user.jianjie }}</p>
                             </div>
                         </div>
                     </div>

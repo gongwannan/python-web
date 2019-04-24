@@ -121,7 +121,7 @@ def send_email(email, code):
                     如果你看到这条消息，说明你的邮箱服务器不提供HTML链接功能，请联系管理员！'''
 
     html_content = '''
-                    <p>感谢注册<a href="http://{}/confirm/?code={}" target=blank>www.jike.com</a>，\
+                    <p>感谢注册<a href="http://{}/login/confirm/?code={}" target=blank>www.jike.com</a>，\
                     这里极客交流社区站点，专注于技术的分享！</p>
                     <p>请点击站点链接完成注册确认！</p>
                     <p>此链接有效期为{}天！</p>
@@ -155,5 +155,6 @@ def user_confirm(request):
         return render(request, 'login/confirm.html', locals())
 
 def usermessage(request):
-    pass
+    name = request.session['user_name']
+    user = models.User.objects.get(name=name)
     return render(request, 'login/usermessage.html', locals())
