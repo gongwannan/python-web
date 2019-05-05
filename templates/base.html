@@ -15,6 +15,18 @@
     {% block css %}{% endblock %}
 </head>
 <body>
+<script>
+        $(function () {
+        $(".faq-tabbable").find("li").each(function () {
+            var a = $(this).find("a:first")[0];
+            if ($(a).attr("href") === location.pathname) {
+                $(this).addClass("active");
+            } else {
+                $(this).removeClass("active");
+            }
+        });
+    })
+</script>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->

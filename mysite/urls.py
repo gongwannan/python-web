@@ -17,6 +17,10 @@ from django.contrib import admin
 from  django.conf.urls import url,include
 from django.urls import path
 from login import views
+from  mysite import settings
+from django.contrib.staticfiles.urls import static
+
+
 
 urlpatterns = [
     path('luntan/', include('luntan.urls')),

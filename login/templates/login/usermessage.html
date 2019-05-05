@@ -64,11 +64,44 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="thumbnail">
-                                            <img alt="300x200"
-                                                 src="/static/images/c2.jpeg"/>
+                                            <img alt="300x200" src="/static/media/{{ user.touxiang }}"/>
                                             <div class="caption">
                                                 <p class="text-center">
-                                                    <a href="#">修改头像</a>
+                                                    <a id="modal-581720" href="#modal-container-581720" role="button"
+                                                       class="btn" data-toggle="modal">修改头像</a>
+
+                                                <div class="modal fade" id="modal-container-581720" role="dialog"
+                                                     aria-labelledby="myModalLabel"
+                                                     aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-hidden="true">×
+                                                                </button>
+                                                                <h4 class="modal-title" id="myModalLabel">
+                                                                    上传头像
+                                                                </h4>
+                                                            </div>
+                                                            <form method="post" action="/login/usermessage/" class="touxiang_form" enctype='multipart/form-data' >
+                                                                {% csrf_token %}
+                                                            <div class="modal-body">
+                                                                {{ touxiang_form.touxiang.label_tag }}
+                                                                {{ touxiang_form.touxiang }}
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="reset" class="btn btn-default pull-left">重置</button>
+                                                                <button type="button" class="btn btn-default"
+                                                                        data-dismiss="modal">关闭
+                                                                </button>
+                                                                <button type="submit" class="btn btn-primary">确定</button>
+                                                            </div>
+                                                            </form>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
                                                 </p>
                                             </div>
                                         </div>

@@ -5,5 +5,4 @@ from . import models
 
 admin.site.register(models.User)
 admin.site.register(models.ConfirmString)
-admin.site.register(models.Fan)
 admin.site.register(models.Follow)

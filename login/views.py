@@ -7,7 +7,8 @@ from django.shortcuts import render, redirect
 
 from . import models
 from . import forms
-
+from login import my_utils
+import os
 
 # Create your views here.
 
@@ -157,4 +158,22 @@ def user_confirm(request):
 def usermessage(request):
     name = request.session['user_name']
     user = models.User.objects.get(name=name)
+    if request.method =='POST':
+        touxiang = request.FILES['touxiang']
+        # 拿文件数据
+        # 获取图片的随机名
+        file_name = 'images/' + my_utils.utils.get_random_str() + '.jpg'
+        # 拼接一个自己的文件路径
+        image_path = os.path.join(settings.MEDIA_ROOT, file_name)
+        # 打开拼接的文件路径
+        with open(image_path, 'wb')as fp:
+            # 遍历图片的块数据（切块的传图片）
+            for i in touxiang.chunks():
+                # 将图片数据写入自己的那个文件
+                fp.write(i)
+        # 拼接返回数据
+        user.touxiang = file_name
+        user.save()
+
+    touxiang_form = forms.TouxiangForm()
     return render(request, 'login/usermessage.html', locals())
