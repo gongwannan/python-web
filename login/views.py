@@ -90,6 +90,8 @@ def logout(request):
     if not request.session.get('is_login', None):
         return redirect('/news/news/')
     request.session.flush()
+    request.session['is_login'] = False
+
     return redirect("/news/news/")
 
 
@@ -177,3 +179,6 @@ def usermessage(request):
 
     touxiang_form = forms.TouxiangForm()
     return render(request, 'login/usermessage.html', locals())
+def base(request):
+    pass
+    return render(request,'base.html')

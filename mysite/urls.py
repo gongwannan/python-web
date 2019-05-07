@@ -31,4 +31,5 @@ urlpatterns = [
     url(r'^tinymce/', include('tinymce.urls')),
     path('', views.huanying),
     path('login/', views.login),
+    path('base/', views.base),
 ]

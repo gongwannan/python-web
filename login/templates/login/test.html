@@ -1,26 +1,106 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <script src="/static/tinymce/tinymce.min.js"></script>
+        
+    <meta charset="UTF-8">
+        <title>固定导航栏</title>
+        
+    <style>
+                     * {
+                          
+             margin: 0;
+            padding: 0;             
+        }
 
+                    body {
+                          
+             margin: 0 auto;
+                          
+             width: 1423px;
+                        
+        }
 
-<script>
-  tinymce.init({
-      language: "zh_CN",
-    selector:'textarea.content', //表单控件.样式名称 - 绑定textarea
-    height:"140", //高度
-    width:"280", //宽度
-    toolbar_items_size: 'small', //控件大小
-    menubar:true, //是否显示菜单栏
-    plugins: ["link code"], //插件区，激活控件
-    toolbar: "link code",  //控件区，显示控件
-    //名称前后显示，影响控件显示位置
-  });
-</script>
+                    img {
+                          
+             vertical-align: top;
+                        
+        }
+
+                    .main {
+                          
+             margin: 0 auto;
+                          
+             width: 1000px;
+                          
+             margin-top: 10px;
+
+                        
+        }
+
+                    .fixed {
+                          
+             position: fixed;
+                          
+             top: 0;       
+        }
+
+              </style>
 
 </head>
 <body>
-  <textarea class="content">Next, start a free trial!</textarea>
+    
+<div class="top" id="top">
+            <img src="/static/images/1.jpeg" alt=""/>
+        
+</div>
+    
+<div class="nav" id="Q_nav">
+            <img src="/static/images/2.jpeg" alt=""/>
+        
+</div>
+    
+<div class="main">
+            <img src="/static/images/c3.jpg" alt=""/>
+        
+</div>
+<div class="main">
+            <img src="/static/images/c3.jpg" alt=""/>
+        
+</div>
+<div class="main">
+            <img src="/static/images/c3.jpg" alt=""/>
+        
+</div>
+<div class="main">
+            <img src="/static/images/c3.jpg" alt=""/>
+        
+</div>
+<div class="main">
+            <img src="/static/images/c3.jpg" alt=""/>
+        
+</div>
+<div class="main">
+            <img src="/static/images/c3.jpg" alt=""/>
+        
+</div>
 </body>
+<script src="/static/js/my.js"></script>
+<!-- 注意：防止页面渲染问题,把js导入放body后面 -->
+<script>
+    var nav = $('Q_nav');
+    var Top = $('top');
+    var navTop = nav.offsetTop;
+    // var topH = Top.offsetHeight;
+    // console.log(navTop,topH);
+    window.onscroll = function () {
+        var scrollTop = scroll().top;
+        // console.log(scrollTop);
+        if (scrollTop >= navTop) {
+            nav.className = "nav fixed";
+        } else {
+            nav.className = "nav";
+        }
+    }
+    //注：上述代码在firefox有bug，因为它不支持得到img撑开的高度(使用的firefox61)
+</script>
 </html>

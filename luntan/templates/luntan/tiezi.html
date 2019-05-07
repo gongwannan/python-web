@@ -4,7 +4,9 @@
     帖子
 {% endblock %}
 {% block content %}
-
+{% if message %}
+                    <div class="alert alert-warning">{{ message }}</div>
+                {% endif %}
     <script src="/static/tinymce/tinymce.min.js"></script>
 
 
@@ -33,6 +35,7 @@
             var t = "引用" + obj + "楼" + $(name).text() + "的回复:" + $(content).text();
 
             tinyMCE.editors[0].setContent(t);
+            document.getElementById('pinglun').scrollIntoView();
 
         }
     </script>
@@ -171,7 +174,7 @@
                                 <form class='form-pinglun' action="/luntan/tiezi/{{ tiezi.id }}" method="post">
                                     {% csrf_token %}
                                     <div class="form-group">
-                                        <div>
+                                        <div id="pinglun">
 
 
                                             {{ pinlun_form.content.label_tag }}

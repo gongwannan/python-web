@@ -2,6 +2,9 @@
 {% load staticfiles %}
 {% block title %}发帖{% endblock %}
 {% block content %}
+    {% if message %}
+                    <div class="alert alert-warning">{{ message }}</div>
+                {% endif %}
     <script type="text/javascript" src="/static/tiny_mce/tiny_mce.js"></script>
     <script type="text/javascript" src="/static/django_tinymce/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="/static/django_tinymce/init_tinymce.js"></script>
@@ -57,7 +60,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="/luntan/fatie/">
+                                <a href="/luntan/post/">
                                     <button class="btn-danger">我要发帖</button>
                                 </a>
                             </li>

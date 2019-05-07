@@ -32,6 +32,24 @@
         /* 正在被点击的链接 */
 
     </style>
+
+    <script type="text/javascript">
+        function show1() {
+            var aTrue = document.getElementById(true);
+            var aFalse = document.getElementById(false);
+            if (aTrue.style.display != "none") {
+                aTrue.style.display = "none";
+                aFalse.style.display = "inline";
+            } else {
+                aTrue.style.display = "inline";
+                aFalse.style.display = "none";
+            }
+        }
+
+    </script>
+    {% if message %}
+        <div class="alert alert-warning">{{ message }}</div>
+    {% endif %}
     <div class="container">
         <div class="row clearfix">
             <div class="col-md-12 column">
@@ -40,18 +58,20 @@
                         <a href="/luntan/community/">论坛首页</a>
                     </li>
                     <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">精选板块 <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
-                </li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">精选板块 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                    </li>
                     <li>
-                        <a href="/luntan/post/"><button class="btn-danger">我要发帖</button></a>
+                        <a href="/luntan/post/">
+                            <button class="btn-danger">我要发帖</button>
+                        </a>
                     </li>
                 </ul>
                 {% if request.session.is_login %}
@@ -148,8 +168,8 @@
                                                     题目
                                                 </th>
                                                 <th>
-                                        作者
-                                    </th>
+                                                    作者
+                                                </th>
                                                 <th>
                                                     发表时间
                                                 </th>
@@ -187,31 +207,31 @@
                                                     题目
                                                 </th>
                                                 <th>
-                                        作者
-                                    </th>
+                                                    作者
+                                                </th>
                                                 <th>
                                                     发表时间
                                                 </th>
                                             </tr>
                                             </thead>
-                                        {% for tiezi in tiezi_list2 %}
-                                            <tbody>
-                                            <tr>
+                                            {% for tiezi in tiezi_list2 %}
+                                                <tbody>
+                                                <tr>
 
-                                                <td>
-                                                    <a href="/luntan/tiezi/{{ tiezi.id }}">{{ tiezi.title }}</a>
-                                                </td>
-                                                <td>
-                                                    {{ tiezi.author.name }}
-                                                </td>
-                                                <td>
-                                                    {{ tiezi.p_time }}
-                                                </td>
+                                                    <td>
+                                                        <a href="/luntan/tiezi/{{ tiezi.id }}">{{ tiezi.title }}</a>
+                                                    </td>
+                                                    <td>
+                                                        {{ tiezi.author.name }}
+                                                    </td>
+                                                    <td>
+                                                        {{ tiezi.p_time }}
+                                                    </td>
 
-                                            </tr>
+                                                </tr>
 
-                                            </tbody>
-                                        {% endfor %}
+                                                </tbody>
+                                            {% endfor %}
                                         </table>
                                         </p>
                                     </div>
@@ -252,7 +272,11 @@
                                     <div class="panel-heading">
                                         <a class="panel-title collapsed" data-toggle="collapse"
                                            data-parent="#panel-340324"
-                                           href="#panel-element-423067">移动开发</a><button class="pull-right">关注</button>
+                                           href="#panel-element-423067">移动开发</a>
+                                        <button class="pull-right" onclick="show1()">
+                                            <span id="true">关注</span>
+                                            <span id="false">已关注</span>
+                                        </button>
                                     </div>
                                     <div id="panel-element-423067" class="panel-collapse collapse">
                                         <div class="panel-body">
@@ -264,7 +288,8 @@
                                     <div class="panel-heading">
                                         <a class="panel-title collapsed" data-toggle="collapse"
                                            data-parent="#panel-340324"
-                                           href="#panel-element-654321">游戏开发</a><button class="pull-right">关注</button>
+                                           href="#panel-element-654321">游戏开发</a>
+                                        <button class="pull-right">关注</button>
                                     </div>
                                     <div id="panel-element-654321" class="panel-collapse collapse">
                                         <div class="panel-body">
@@ -276,7 +301,8 @@
                                     <div class="panel-heading">
                                         <a class="panel-title collapsed" data-toggle="collapse"
                                            data-parent="#panel-340324"
-                                           href="#panel-element-123456">人工智能</a><button class="pull-right">关注</button>
+                                           href="#panel-element-123456">人工智能</a>
+                                        <button class="pull-right">关注</button>
                                     </div>
                                     <div id="panel-element-123456" class="panel-collapse collapse">
                                         <div class="panel-body">
@@ -304,6 +330,25 @@
                                     </th>
                                 </tr>
                                 </thead>
+                                {% for tiezi in top %}
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <a href="/luntan/tiezi/{{ tiezi.id }}">{{ tiezi.title }}</a>
+                                        </td>
+                                        <td>
+                                            {{ tiezi.name }}
+                                        </td>
+                                        <td>
+                                            {{ tiezi.p_time }}
+                                        </td>
+                                        <td>
+                                            {{ tiezi.fangwenshu }}/ {{ tiezi.pingluns.all | length }}
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                {% endfor %}
                                 {% for tiezi in tiezi_list3 %}
                                     <tbody>
                                     <tr>
@@ -327,23 +372,22 @@
 
                         </div>
                         <div class="col-md-2 column">
-                            <h4>推荐新闻</h4>
+                            <h4>热帖推荐</h4>
                             {% for new in commend_list %}
-                                <div class="thumbnail">
-                                    <img alt="300x200"
-                                         src="/static/images/{{ new.img }}"/>
-                                    <div class="caption">
-                                        <h3>
 
-                                        </h3>
-                                        <p>
-                                            {{ new.title }}
-                                        </p>
-                                        <p>
 
-                                        </p>
-                                    </div>
+                                <div class="caption">
+                                    <h3>
+
+                                    </h3>
+                                    <p>
+
+                                    </p>
+                                    <p>
+
+                                    </p>
                                 </div>
+
                             {% endfor %}
                         </div>
                     </div>

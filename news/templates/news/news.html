@@ -143,7 +143,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="thumbnail">
-                            <a href="https://edu.csdn.net/huiyiCourse/detail/977">
+                            <a href="https://edu.csdn.net/huiyiCourse/detail/977" target="_blank">
                                 <img alt="300x200" src="/static/images/2.png"/>
                             </a>
                             <div class="carousel-caption">
@@ -159,7 +159,7 @@
 
 
                         <div class="thumbnail">
-                            <a href="https://edu.csdn.net/topic/python115?utm_source=blog08">
+                            <a href="https://edu.csdn.net/topic/python115?utm_source=blog08" target="_blank">
                                 <img alt="300x200" src="/static/images/1.jpg"/>
                             </a>
                             <div class="carousel-caption">
@@ -199,15 +199,15 @@
                     </div>
                     <div class="col-md-3">
                         <h4>今日推荐</h4>
-                        {% for commend in commend_list %}
+                        {% for new in commend_list %}
                             <div class="thumbnail">
-                                <a href="">
-                                    <img alt="300x200" src="/static/images/{{ commend.img }}"/>
+                                <a href="/news/new/{{new.id }}">
+                                    <img alt="300x200" src="/static/images/{{ new.img }}"/>
                                 </a>
                                 <div class="caption">
 
                                     <p>
-                                        <strong>{{ commend.title }}</strong>
+                                        <strong>{{ new.title }}</strong>
                                     </p>
 
                                 </div>
