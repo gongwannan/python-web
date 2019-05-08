@@ -328,6 +328,9 @@
                                     <th>
                                         访问/评论
                                     </th>
+                                    <th>
+                                        最后访问时间
+                                    </th>
                                 </tr>
                                 </thead>
                                 {% for tiezi in top %}
@@ -337,13 +340,16 @@
                                             <a href="/luntan/tiezi/{{ tiezi.id }}">{{ tiezi.title }}</a>
                                         </td>
                                         <td>
-                                            {{ tiezi.name }}
+                                            {{ tiezi.author.name }}
                                         </td>
                                         <td>
                                             {{ tiezi.p_time }}
                                         </td>
                                         <td>
                                             {{ tiezi.fangwenshu }}/ {{ tiezi.pingluns.all | length }}
+                                        </td>
+                                        <td>
+                                            {{ tiezi.mostrecently }}
                                         </td>
                                     </tr>
 
@@ -356,13 +362,16 @@
                                             <a href="/luntan/tiezi/{{ tiezi.id }}">{{ tiezi.title }}</a>
                                         </td>
                                         <td>
-                                            {{ tiezi.name }}
+                                            {{ tiezi.author.name }}
                                         </td>
                                         <td>
                                             {{ tiezi.p_time }}
                                         </td>
                                         <td>
                                             {{ tiezi.fangwenshu }}/ {{ tiezi.pingluns.all | length }}
+                                        </td>
+                                        <td>
+                                            {{ tiezi.mostrecently }}
                                         </td>
                                     </tr>
 

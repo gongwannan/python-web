@@ -10,6 +10,7 @@ from . import forms
 from login import my_utils
 import os
 
+
 # Create your views here.
 
 
@@ -105,8 +106,10 @@ def hash_code(s, salt='mysite'):  # 加点盐
 def test(request):
     return render(request, 'login/test.html')
 
+
 def huanying(request):
-    return render(request,'login/huanying.html')
+    return render(request, 'login/huanying.html')
+
 
 def make_confirm_string(user):
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -134,6 +137,7 @@ def send_email(email, code):
     msg.attach_alternative(html_content, "text/html")
     msg.send()
 
+
 def user_confirm(request):
     code = request.GET.get('code', None)
     message = ''
@@ -157,10 +161,11 @@ def user_confirm(request):
         message = '感谢确认，请使用账户登录！'
         return render(request, 'login/confirm.html', locals())
 
+
 def usermessage(request):
     name = request.session['user_name']
     user = models.User.objects.get(name=name)
-    if request.method =='POST':
+    if request.method == 'POST':
         touxiang = request.FILES['touxiang']
         # 拿文件数据
         # 获取图片的随机名
@@ -179,6 +184,8 @@ def usermessage(request):
 
     touxiang_form = forms.TouxiangForm()
     return render(request, 'login/usermessage.html', locals())
+
+
 def base(request):
     pass
-    return render(request,'base.html')
+    return render(request, 'base.html')

@@ -127,13 +127,13 @@
                                 {% for pinglun in pinglun_list %}
 
                                     <p>
-                                        #{{ i }}
+                                        #{{ pinglun.louceng }}
                                     </p>
                                     <div class="row clearfix">
                                         <div class="col-md-3 column">
                                             <div class="thumbnail">
                                                 <img alt="300x200" src="/static/media/{{ pinglun.author.touxiang }}"/>
-                                                <div id='name{{ i }}' class="caption">
+                                                <div id='name{{ pinglun.louceng }}' class="caption">
                                                     <p>
                                                         {{ pinglun.author.name }}
                                                     </p>
@@ -141,7 +141,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="content{{ pinglun.id }}" class="col-md-9 column">
+                                        <div id="content{{ pinglun.louceng }}" class="col-md-9 column">
                                             <h4>
                                                 {% autoescape off %}
                                                     {{ pinglun.content }}
@@ -157,7 +157,7 @@
                                             <p>
 
                                             <div>{{ pinglun.p_time }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button
-                                                    class="btn btn-primary" onclick="cause_reply({{ pinglun.id }})">回复
+                                                    class="btn btn-primary" onclick="cause_reply({{ pinglun.louceng }})">回复
                                             </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
                                                     href="#">举报</a><a href="#" style="float:right;">只看他</a></div>
                                             </p>
