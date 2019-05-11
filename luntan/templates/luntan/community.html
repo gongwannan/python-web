@@ -268,48 +268,31 @@
                                         </div>
                                     </div>
                                 </div>
+                                {% for luntan in luntan_list %}
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <a class="panel-title collapsed" data-toggle="collapse"
                                            data-parent="#panel-340324"
-                                           href="#panel-element-423067">移动开发</a>
+                                           href="#panel-element-{{ luntan.id }}">{{ luntan.name }}</a>
                                         <button class="pull-right" onclick="show1()">
                                             <span id="true">关注</span>
                                             <span id="false">已关注</span>
                                         </button>
                                     </div>
-                                    <div id="panel-element-423067" class="panel-collapse collapse">
+                                    <div id="panel-element-{{ luntan.id }}" class="panel-collapse collapse">
                                         <div class="panel-body">
-                                            Anim pariatur cliche...
+
+                                            {% for i in luntan.fenlei.all %}
+                                                {{ i.name }}
+                                            {% endfor %}
+                                            <button class="pull-right" onclick="show1()">
+                                                <span id="true">关注</span>
+                                                <span id="false">已关注</span>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <a class="panel-title collapsed" data-toggle="collapse"
-                                           data-parent="#panel-340324"
-                                           href="#panel-element-654321">游戏开发</a>
-                                        <button class="pull-right">关注</button>
-                                    </div>
-                                    <div id="panel-element-654321" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            Anim pariatur cliche...
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <a class="panel-title collapsed" data-toggle="collapse"
-                                           data-parent="#panel-340324"
-                                           href="#panel-element-123456">人工智能</a>
-                                        <button class="pull-right">关注</button>
-                                    </div>
-                                    <div id="panel-element-123456" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            Anim pariatur cliche...
-                                        </div>
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                         <div class="col-md-8 column">
@@ -329,7 +312,7 @@
                                         访问/评论
                                     </th>
                                     <th>
-                                        最后访问时间
+                                        最后评论时间
                                     </th>
                                 </tr>
                                 </thead>
