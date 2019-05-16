@@ -7,6 +7,7 @@ from . import views
 
 urlpatterns =[
     path('community/',views.community),
-    path('tiezi/<int:id>',views.tiezi),
-    path('post/',views.post),
+    path('tiezi/<int:id>', views.tiezi),
+    path('post/', views.post),
+    path('luntan/<int:id>', views.luntan),
 ]

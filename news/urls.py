@@ -9,5 +9,6 @@ urlpatterns =[
     path('new/<int:id>', views.new),
     path('firenews/', views.rdnews),
     path('hangyenews/', views.hynews),
+    path('jishunews/', views.jsnews),
 
 ]

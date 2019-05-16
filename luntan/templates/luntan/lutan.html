@@ -1,0 +1,260 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}论坛{% endblock %}
+{% block content %}
+
+    <style>
+        a:link {
+            color: black;
+        }
+
+        /* 未被访问的链接 */
+        a:visited {
+            color: black;
+        }
+
+        /* 已被访问的链接 */
+        a:hover {
+            color: #FF00FF;
+        }
+
+        /* 鼠标指针移动到链接上 */
+        a:active {
+            color: black;
+        }
+
+        left:
+
+        50
+        %
+        ;
+
+        /* 正在被点击的链接 */
+
+    </style>
+
+    <script type="text/javascript">
+        function show1(obj) {
+            var t = "true" + obj;
+            var f = "false" + obj;
+            var aTrue = document.getElementById(t);
+            var aFalse = document.getElementById(f);
+            if (aTrue.style.display != "none") {
+                aTrue.style.display = "none";
+                aFalse.style.display = "inline";
+            } else {
+                aTrue.style.display = "inline";
+                aFalse.style.display = "none";
+            }
+        }
+
+    </script>
+    <script type="text/javascript">
+        function show2(obj) {
+            var t = "True" + obj;
+            var f = "False" + obj;
+            var aTrue = document.getElementById(t);
+            var aFalse = document.getElementById(f);
+            if (aTrue.style.display != "none") {
+                aTrue.style.display = "none";
+                aFalse.style.display = "inline";
+            } else {
+                aTrue.style.display = "inline";
+                aFalse.style.display = "none";
+            }
+        }
+
+    </script>
+    {% if message %}
+        <div class="alert alert-warning">{{ message }}</div>
+    {% endif %}
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="/luntan/community/">论坛首页</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">精选板块 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/luntan/post/">
+                            <button class="btn-danger">我要发帖</button>
+                        </a>
+                    </li>
+                </ul>
+                {% if request.session.is_login %}
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4>
+                            提示!
+                        </h4> 你好,<strong>{{ request.session.user_name }}</strong>！欢迎回来！{{ count }}
+                    </div>
+                {% else %}
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4>
+                            提示!
+                        </h4> 您尚未登录只能访问公开内容! <a href="/login/" class="alert-link">登录</a>
+                    </div>
+                {% endif %}
+
+                <div class="container">
+                    <div class="row clearfix">
+                        <div class="col-md-12 column">
+                            <div class="page-header">
+                                <h1>
+                                    <small>极客社区论坛/{{ luntanname }}论坛</small>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-md-2 column">
+                        <h4><a href="/luntan/community/">论坛首页</a></h4>
+                        <div class="panel-group" id="panel-340324">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <a class="panel-title" data-toggle="collapse" data-parent="#panel-340324"
+                                       href="#panel-element-698628">我感兴趣的论坛</a>
+                                </div>
+                                <div id="panel-element-698628" class="panel-collapse in">
+                                    <div class="panel-body">
+                                         {% for luntan in guanzhuluntan_list %}
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+
+                                                        <a class="panel-title collapsed" data-toggle="collapse"
+                                                           data-parent="#panel-340324"
+                                                           href="#panel-element-{{ luntan.luntan.id }}123456">
+                                                            <li>{{ luntan.luntan.name }}</li>
+                                                        </a>
+                                                    </div>
+                                                    <div id="panel-element-{{ luntan.luntan.id }}123456"
+                                                         class="panel-collapse collapse">
+                                                        <div class="panel-body">
+
+                                                            {% for i in luntan.luntan.fenlei.all %}
+                                                                <a href="/luntan/luntan/{{ i.id }}">
+                                                                    <li>{{ i.name }}</li>
+                                                                </a>
+                                                            {% endfor %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            {% for luntan in luntan_list %}
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+
+                                        <a class="panel-title collapsed" data-toggle="collapse"
+                                           data-parent="#panel-340324"
+                                           href="#panel-element-{{ luntan.id }}">{{ luntan.name }}</a>
+
+
+                                        <form action="/luntan/community/" method="post" style="float: right">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="luntan_id" value="{{ luntan.id }}">
+                                            <button type="submit" class="pull-right"
+                                                    onclick="show1({{ luntan.id }})">
+                                                {% if luntan.name in guanzhuluntan %}
+                                                    <span id="false{{ luntan.id }}">已关注</span>
+
+                                                {% else %}
+
+                                                    <span id="true{{ luntan.id }}">关注</span>
+                                                {% endif %}
+                                            </button>
+                                        </form>
+
+                                    </div>
+                                    <div id="panel-element-{{ luntan.id }}" class="panel-collapse collapse">
+                                        <div class="panel-body">
+
+                                            {% for i in luntan.fenlei.all %}
+                                                <a href="/luntan/luntan/{{ i.id }}">
+                                                    <li>{{ i.name }}</li>
+                                                </a>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md-10 column">
+                        <ul class="breadcrumb">
+                            <li>
+                                <a href="/news/news/">论坛首页</a>
+                            </li>
+                            <li>
+                                <a href="/news/jishunews/">{{ belongname }}</a>
+                            </li>
+                             <li>
+                                <a href="/luntan/luntan/{{ id }}">{{ luntanname }}</a>
+                            </li>
+                        </ul>
+
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>
+                                    主题
+                                </th>
+                                <th>
+                                    作者
+                                </th>
+                                <th>
+                                    发表时间
+                                </th>
+                                <th>
+                                    访问/评论
+                                </th>
+                                <th>
+                                    最后评论时间
+                                </th>
+                            </tr>
+                            </thead>
+                            {% for tiezi in tiezi_list3 %}
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <a href="/luntan/tiezi/{{ tiezi.id }}">{{ tiezi.title }}</a>
+                                    </td>
+                                    <td>
+                                        {{ tiezi.author.name }}
+                                    </td>
+                                    <td>
+                                        {{ tiezi.p_time }}
+                                    </td>
+                                    <td>
+                                        {{ tiezi.fangwenshu }}/ {{ tiezi.pingluns.all | length }}
+                                    </td>
+                                    <td>
+                                        {{ tiezi.mostrecently }}
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+
+
+
+{% endblock %}

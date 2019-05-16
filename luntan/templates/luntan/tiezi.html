@@ -4,9 +4,9 @@
     帖子
 {% endblock %}
 {% block content %}
-{% if message %}
-                    <div class="alert alert-warning">{{ message }}</div>
-                {% endif %}
+    {% if message %}
+        <div class="alert alert-warning">{{ message }}</div>
+    {% endif %}
     <script src="/static/tinymce/tinymce.min.js"></script>
 
 
@@ -27,6 +27,15 @@
             toolbar: "link code",  //控件区，显示控件
             //名称前后显示，影响控件显示位置
         });
+    </script>
+    <script type="text/javascript">
+        function cause_submit() {
+            var len = form1.content.value.length;
+            if (len < 10) {
+                alert('回帖不少于十个字');
+            }
+            document.getElementById('id_content').focus();
+        }
     </script>
     <script type="text/javascript">
         function cause_reply(obj) {
@@ -157,7 +166,8 @@
                                             <p>
 
                                             <div>{{ pinglun.p_time }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button
-                                                    class="btn btn-primary" onclick="cause_reply({{ pinglun.louceng }})">回复
+                                                    class="btn btn-primary"
+                                                    onclick="cause_reply({{ pinglun.louceng }})">回复
                                             </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
                                                     href="#">举报</a><a href="#" style="float:right;">只看他</a></div>
                                             </p>
@@ -171,7 +181,8 @@
                         <hr>
                         <div class="row clearfix">
                             <div class="col-md-12 column">
-                                <form class='form-pinglun' action="/luntan/tiezi/{{ tiezi.id }}" method="post">
+                                <form name="form1" class='form-pinglun' action="/luntan/tiezi/{{ tiezi.id }}"
+                                      method="post">
                                     {% csrf_token %}
                                     <div class="form-group">
                                         <div id="pinglun">
@@ -187,7 +198,9 @@
 
 
                                     <button type="reset" class="btn btn-default pull-left">重置</button>
-                                    <button type="submit" class="btn btn-primary pull-right">发表</button>
+                                    <button type="submit" class="btn btn-primary pull-right" onclick="cause_submit()">
+                                        发表
+                                    </button>
 
                                 </form>
 

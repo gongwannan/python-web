@@ -186,6 +186,12 @@ def usermessage(request):
     return render(request, 'login/usermessage.html', locals())
 
 
-def base(request):
+def sousuo(request):
     pass
-    return render(request, 'base.html')
+    return render(request, 'sousuo.html')
+
+def about(request):
+    pass
+    return render(request, 'login/about.html', locals())
+
+

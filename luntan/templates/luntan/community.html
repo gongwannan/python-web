@@ -34,9 +34,27 @@
     </style>
 
     <script type="text/javascript">
-        function show1() {
-            var aTrue = document.getElementById(true);
-            var aFalse = document.getElementById(false);
+        function show1(obj) {
+            var t = "true" + obj;
+            var f = "false" + obj;
+            var aTrue = document.getElementById(t);
+            var aFalse = document.getElementById(f);
+            if (aTrue.style.display != "none") {
+                aTrue.style.display = "none";
+                aFalse.style.display = "inline";
+            } else {
+                aTrue.style.display = "inline";
+                aFalse.style.display = "none";
+            }
+        }
+
+    </script>
+    <script type="text/javascript">
+        function show2(obj) {
+            var t = "True" + obj;
+            var f = "False" + obj;
+            var aTrue = document.getElementById(t);
+            var aFalse = document.getElementById(f);
             if (aTrue.style.display != "none") {
                 aTrue.style.display = "none";
                 aFalse.style.display = "inline";
@@ -176,10 +194,9 @@
 
                                             </tr>
                                             </thead>
-                                            {% for tiezi in tiezi_list1 %}
+                                            {% for tiezi in top %}
                                                 <tbody>
                                                 <tr>
-
                                                     <td>
                                                         <a href="/luntan/tiezi/{{ tiezi.id }}">{{ tiezi.title }}</a>
                                                     </td>
@@ -194,6 +211,23 @@
 
                                                 </tbody>
                                             {% endfor %}
+                                            {% for tiezi in tiezi_list3 %}
+                                                <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <a href="/luntan/tiezi/{{ tiezi.id }}">{{ tiezi.title }}</a>
+                                                    </td>
+                                                    <td>
+                                                        {{ tiezi.author.name }}
+                                                    </td>
+                                                    <td>
+                                                        {{ tiezi.p_time }}
+                                                    </td>
+                                                </tr>
+
+                                                </tbody>
+                                            {% endfor %}
+
                                         </table>
                                         </p>
                                     </div>
@@ -263,39 +297,73 @@
                                     </div>
                                     <div id="panel-element-698628" class="panel-collapse in">
                                         <div class="panel-body">
-                                            <li><a href="#">移动开发</a></li>
-                                            <li><a href="#">人工智能</a></li>
+                                            {% for luntan in guanzhuluntan_list %}
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+
+                                                        <a class="panel-title collapsed" data-toggle="collapse"
+                                                           data-parent="#panel-340324"
+                                                           href="#panel-element-{{ luntan.luntan.id }}123456">
+                                                            <li>{{ luntan.luntan.name }}</li>
+                                                        </a>
+                                                    </div>
+                                                    <div id="panel-element-{{ luntan.luntan.id }}123456"
+                                                         class="panel-collapse collapse">
+                                                        <div class="panel-body">
+
+                                                            {% for i in luntan.luntan.fenlei.all %}
+                                                                <a href="/luntan/luntan/{{ i.id }}">
+                                                                    <li>{{ i.name }}</li>
+                                                                </a>
+                                                            {% endfor %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>
                                 {% for luntan in luntan_list %}
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <a class="panel-title collapsed" data-toggle="collapse"
-                                           data-parent="#panel-340324"
-                                           href="#panel-element-{{ luntan.id }}">{{ luntan.name }}</a>
-                                        <button class="pull-right" onclick="show1()">
-                                            <span id="true">关注</span>
-                                            <span id="false">已关注</span>
-                                        </button>
-                                    </div>
-                                    <div id="panel-element-{{ luntan.id }}" class="panel-collapse collapse">
-                                        <div class="panel-body">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
 
-                                            {% for i in luntan.fenlei.all %}
-                                                {{ i.name }}
-                                            {% endfor %}
-                                            <button class="pull-right" onclick="show1()">
-                                                <span id="true">关注</span>
-                                                <span id="false">已关注</span>
-                                            </button>
+                                            <a class="panel-title collapsed" data-toggle="collapse"
+                                               data-parent="#panel-340324"
+                                               href="#panel-element-{{ luntan.id }}">{{ luntan.name }}</a>
+
+
+                                            <form action="/luntan/community/" method="post" style="float: right">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="luntan_id" value="{{ luntan.id }}">
+                                                <button type="submit" class="pull-right"
+                                                        onclick="show1({{ luntan.id }})">
+                                                    {% if luntan.name in guanzhuluntan %}
+                                                        <span id="false{{ luntan.id }}">已关注</span>
+
+                                                    {% else %}
+
+                                                        <span id="true{{ luntan.id }}">关注</span>
+                                                    {% endif %}
+                                                </button>
+                                            </form>
+
+                                        </div>
+                                        <div id="panel-element-{{ luntan.id }}" class="panel-collapse collapse">
+                                            <div class="panel-body">
+
+                                                {% for i in luntan.fenlei.all %}
+                                                    <a href="/luntan/luntan/{{ i.id }}">
+                                                        <li>{{ i.name }}</li>
+                                                    </a>
+                                                {% endfor %}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                                 {% endfor %}
                             </div>
                         </div>
                         <div class="col-md-8 column">
+                            <h4>热帖~技术区</h4>
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
@@ -316,9 +384,10 @@
                                     </th>
                                 </tr>
                                 </thead>
-                                {% for tiezi in top %}
+                                {% for tiezi in tiezi_list1 %}
                                     <tbody>
                                     <tr>
+
                                         <td>
                                             <a href="/luntan/tiezi/{{ tiezi.id }}">{{ tiezi.title }}</a>
                                         </td>
@@ -334,11 +403,35 @@
                                         <td>
                                             {{ tiezi.mostrecently }}
                                         </td>
+
                                     </tr>
 
                                     </tbody>
                                 {% endfor %}
-                                {% for tiezi in tiezi_list3 %}
+
+                            </table>
+                            <h4>推荐~技术区</h4>
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        主题
+                                    </th>
+                                    <th>
+                                        作者
+                                    </th>
+                                    <th>
+                                        发表时间
+                                    </th>
+                                    <th>
+                                        访问/评论
+                                    </th>
+                                    <th>
+                                        最后评论时间
+                                    </th>
+                                </tr>
+                                </thead>
+                                {% for tiezi in commend_list %}
                                     <tbody>
                                     <tr>
                                         <td>
@@ -361,10 +454,53 @@
                                     </tbody>
                                 {% endfor %}
                             </table>
+                            <h4>热帖~生活区</h4>
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        主题
+                                    </th>
+                                    <th>
+                                        作者
+                                    </th>
+                                    <th>
+                                        发表时间
+                                    </th>
+                                    <th>
+                                        访问/评论
+                                    </th>
+                                    <th>
+                                        最后评论时间
+                                    </th>
+                                </tr>
+                                </thead>
+                                {% for tiezi in commend_list %}
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <a href="/luntan/tiezi/{{ tiezi.id }}">{{ tiezi.title }}</a>
+                                        </td>
+                                        <td>
+                                            {{ tiezi.author.name }}
+                                        </td>
+                                        <td>
+                                            {{ tiezi.p_time }}
+                                        </td>
+                                        <td>
+                                            {{ tiezi.fangwenshu }}/ {{ tiezi.pingluns.all | length }}
+                                        </td>
+                                        <td>
+                                            {{ tiezi.mostrecently }}
+                                        </td>
+                                    </tr>
 
+                                    </tbody>
+                                {% endfor %}
+                            </table>
                         </div>
                         <div class="col-md-2 column">
-                            <h4>热帖推荐</h4>
+                            <h4>我的信息</h4>
                             {% for new in commend_list %}
 
 

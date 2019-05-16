@@ -26,10 +26,10 @@
         }
     </style>
     <script>
-    $
-    (document).ready(function (e) {
-        $('#divld').html('{{ new.content }}');
-    })
+        $
+        (document).ready(function (e) {
+            $('#divld').html('{{ new.content }}');
+        })
     </script>
 
     <div class="container">
@@ -47,7 +47,18 @@
             }
         </style>
         <div class="row clearfix">
-            <div class="col-md-2 column">
+            <div class="col-md-9 column">
+                <hr>
+                {% autoescape off %}
+                    {{ new.content }}
+                {% endautoescape %}
+                <hr>
+            </div>
+            <div class="col-md-3 column">
+                <div class="col-md-3 column">
+                </div>
+                <div class="col-md-9 column">
+
                 <div class="thumbnail">
 
                     <img alt="300x200" src="/static/media/{{ new.author.touxiang }}"/>
@@ -56,21 +67,15 @@
 
                         <p>
                             <a href="#"><strong>{{ new.author.name }}</strong></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button href="">关注</button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="right" href="">关注</button>
                         </p>
 
                     </div>
-                </div>
-            </div>
-            <div class="col-md-1">
 
-            </div>
-            <div class="col-md-9 column">
-                <hr>
-                {% autoescape off %}
-                    {{ new.content }}
-                {% endautoescape %}
-                <hr>
+                </div>
+                    <hr>
+                    <p>&nbsp;&nbsp;&nbsp;<a href="">原创:{{ new.author.news.all|length  }}</a>&nbsp;&nbsp;&nbsp;关注:{{ new.author.follows.all|length }}&nbsp;&nbsp;&nbsp;粉丝:{{ user.fans.all|length }}</p>
+                </div>
             </div>
 
         </div>
