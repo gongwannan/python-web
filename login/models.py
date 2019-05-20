@@ -17,7 +17,7 @@ class User(models.Model):
     c_time = models.DateTimeField(auto_now_add=True)
     has_confirmed = models.BooleanField(default=False)
     truename =models.CharField(max_length=128, default='')
-    birthday = models.DateTimeField(default=datetime.datetime.now())
+    birthday = models.DateField(default=datetime.date.today().strftime("%Y-%m-%d"))
     job = models.CharField(max_length=128, default='无')
     jianjie = models.TextField(max_length=2000, default='')
     diqu = models.CharField(max_length=128, default='')
@@ -50,9 +50,7 @@ class ConfirmString(models.Model):
 class Follow(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='follows')
     follow = models.ForeignKey(User, on_delete=models.CASCADE, related_name='fans')
-    status = models.BooleanField()
-    c_time = models.DateTimeField(auto_now_add=True)
-    ch_time = models.DateTimeField(auto_now=True)
+
 
     def __str__(self):
         return self.user.name + '关注' + self.follow.name

@@ -1,10 +1,10 @@
 import datetime
 import hashlib
-
+from luntan.models import Tiezi
 import pytz
 from django.conf import settings
 from django.shortcuts import render, redirect
-
+from news.models import News
 from . import models
 from . import forms
 from login import my_utils
@@ -166,32 +166,60 @@ def usermessage(request):
     name = request.session['user_name']
     user = models.User.objects.get(name=name)
     if request.method == 'POST':
-        touxiang = request.FILES['touxiang']
-        # 拿文件数据
-        # 获取图片的随机名
-        file_name = 'images/' + my_utils.utils.get_random_str() + '.jpg'
-        # 拼接一个自己的文件路径
-        image_path = os.path.join(settings.MEDIA_ROOT, file_name)
-        # 打开拼接的文件路径
-        with open(image_path, 'wb')as fp:
-            # 遍历图片的块数据（切块的传图片）
-            for i in touxiang.chunks():
-                # 将图片数据写入自己的那个文件
-                fp.write(i)
-        # 拼接返回数据
-        user.touxiang = file_name
-        user.save()
-
+        usermessage_form = forms.UsermessageForm(request.POST)
+        if usermessage_form.is_valid():
+            username = usermessage_form.cleaned_data['name']
+            truename = usermessage_form.cleaned_data['truename']
+            birthday = usermessage_form.cleaned_data['birthday']
+            diqu = usermessage_form.cleaned_data['diqu']
+            sex = usermessage_form.cleaned_data['sex']
+            jianjie = usermessage_form.cleaned_data['jianjie']
+            user.name = username
+            user.truename = truename
+            user.sex = sex
+            user.birthday = birthday
+            user.jianjie = jianjie
+            user.diqu = diqu
+            user.save()
+            return render(request, 'login/usermessage.html', locals())
+        else:
+            touxiang = request.FILES['touxiang']
+            # 拿文件数据
+            # 获取图片的随机名
+            file_name = 'images/' + my_utils.utils.get_random_str() + '.jpg'
+            # 拼接一个自己的文件路径
+            image_path = os.path.join(settings.MEDIA_ROOT, file_name)
+            # 打开拼接的文件路径
+            with open(image_path, 'wb')as fp:
+                # 遍历图片的块数据（切块的传图片）
+                for i in touxiang.chunks():
+                    # 将图片数据写入自己的那个文件
+                    fp.write(i)
+            # 拼接返回数据
+            user.touxiang = file_name
+            user.save()
+            return render(request, 'login/usermessage.html', locals())
     touxiang_form = forms.TouxiangForm()
+    xinxi_form = forms.UsermessageForm()
     return render(request, 'login/usermessage.html', locals())
 
 
 def sousuo(request):
-    pass
-    return render(request, 'sousuo.html')
+    if request.method == "POST":
+        content = request.POST["content"]
+        news_list = News.objects.filter(content__icontains=content)
+        tiezi_list = Tiezi.objects.filter(title__icontains=content)
+        user_list = models.User.objects.filter(name__icontains=content)
+    return render(request, 'sousuo.html', locals())
+
 
 def about(request):
     pass
     return render(request, 'login/about.html', locals())
 
 
+def geren(request):
+    name = request.session['user_name']
+    user = models.User.objects.get(name=name)
+
+    return render(request, 'login/geren.html', locals())

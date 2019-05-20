@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <div class="row clearfix">
+                    <div class="col-md-8 column">
+                        <div class="tabbable" id="tabs-25746">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#panel-551863" data-toggle="tab">新闻</a>
+                                </li>
+                                <li>
+                                    <a href="#panel-87871" data-toggle="tab">帖子</a>
+                                </li>
+                                <li>
+                                    <a href="#panel-1" data-toggle="tab">评论</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="panel-551863">
+                                    <p>
+                                        I'm in Section 1.
+                                    </p>
+                                </div>
+                                <div class="tab-pane" id="panel-87871">
+                                    <p>
+                                        Howdy, I'm in Section 2.
+                                    </p>
+                                </div>
+                                <div class="tab-pane" id="panel-1">
+                                    <p>
+                                        Howdy, I'm in Section 2.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 column">
+                        <div class="col-md-3 column">
+                            <img alt="300x200" src="/static/media/{{ user.touxiang }}" class=""
+                                 style="position: absolute;top: 20px; right: 10px;border-radius: 25px;border: none;"
+                                 width="50px" height="50px"/>
+                        </div>
+                        <div class="col-md-9 column">
+
+                            <br>
+                            <a href="#"><strong>{{ user.name }}</strong></a>
+                            </button>
+                            <hr>
+                            <p>&nbsp;&nbsp;&nbsp;<a
+                                    href="">帖子:{{ user.tiezi.all|length }}</a>&nbsp;&nbsp;&nbsp;关注:{{ user.guanzhu.all|length }}
+                                &nbsp;&nbsp;&nbsp;评论:{{ user.pinglun.all|length }}
+                            </p>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

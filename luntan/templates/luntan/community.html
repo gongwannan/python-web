@@ -32,39 +32,29 @@
         /* 正在被点击的链接 */
 
     </style>
-
-    <script type="text/javascript">
-        function show1(obj) {
-            var t = "true" + obj;
-            var f = "false" + obj;
-            var aTrue = document.getElementById(t);
-            var aFalse = document.getElementById(f);
-            if (aTrue.style.display != "none") {
-                aTrue.style.display = "none";
-                aFalse.style.display = "inline";
-            } else {
-                aTrue.style.display = "inline";
-                aFalse.style.display = "none";
-            }
-        }
-
-    </script>
-    <script type="text/javascript">
-        function show2(obj) {
-            var t = "True" + obj;
-            var f = "False" + obj;
-            var aTrue = document.getElementById(t);
-            var aFalse = document.getElementById(f);
-            if (aTrue.style.display != "none") {
-                aTrue.style.display = "none";
-                aFalse.style.display = "inline";
-            } else {
-                aTrue.style.display = "inline";
-                aFalse.style.display = "none";
-            }
-        }
-
-    </script>
+{##}
+{#    <script type="text/javascript">#}
+{#        function show1(obj) {#}
+{#            var t = "true" + obj;#}
+{#            var f = "false" + obj;#}
+{#            var aTrue = document.getElementById(t);#}
+{#            var aFalse = document.getElementById(f);#}
+{#            if (aTrue.style.display != "none") {#}
+{#                aTrue.style.display = "none";#}
+{#                aFalse.style.display = "inline";#}
+{#            } else {#}
+{#                aTrue.style.display = "inline";#}
+{#                aFalse.style.display = "none";#}
+{#            }#}
+{#        }#}
+{##}
+{#    </script>#}
+    {#    <script type="text/javascript">#}
+    {#        function show2(obj) {#}
+    {#            window.location.href = 'http://localhost:8000/luntan/community/'#}
+    {#        }#}
+    {##}
+    {#    </script>#}
     {% if message %}
         <div class="alert alert-warning">{{ message }}</div>
     {% endif %}
@@ -79,11 +69,9 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">精选板块 <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
+                            {% for i in jingxuan_list %}
+                            <li><a href="/luntan/luntan/{{ i.id }}">{{ i.name }}</a></li>
+                            {% endfor %}
                         </ul>
                     </li>
                     <li>
@@ -329,22 +317,26 @@
 
                                             <a class="panel-title collapsed" data-toggle="collapse"
                                                data-parent="#panel-340324"
-                                               href="#panel-element-{{ luntan.id }}">{{ luntan.name }}</a>
+                                               href="#panel-element-{{ luntan.id }}"
+                                               onclick="show2({{ luntan.id }})">{{ luntan.name }}</a>
 
 
                                             <form action="/luntan/community/" method="post" style="float: right">
                                                 {% csrf_token %}
                                                 <input type="hidden" name="luntan_id" value="{{ luntan.id }}">
-                                                <button type="submit" class="pull-right"
-                                                        onclick="show1({{ luntan.id }})">
+
                                                     {% if luntan.name in guanzhuluntan %}
-                                                        <span id="false{{ luntan.id }}">已关注</span>
-
+                                                        <button type="submit" class="  pull-right"
+                                                        onclick="show1({{ luntan.id }})">
+                                                            <span id="false{{ luntan.id }}" >已关注</span>
+                                                        </button>
                                                     {% else %}
-
-                                                        <span id="true{{ luntan.id }}">关注</span>
+                                                        <button type="submit" class=" pull-right"
+                                                        onclick="show1({{ luntan.id }})">
+                                                            <span id="true{{ luntan.id }}" >关注</span>
+                                                        </button>
                                                     {% endif %}
-                                                </button>
+
                                             </form>
 
                                         </div>
@@ -501,22 +493,24 @@
                         </div>
                         <div class="col-md-2 column">
                             <h4>我的信息</h4>
-                            {% for new in commend_list %}
+                            <div class="col-md-3 column">
+                                <img alt="300x200" src="/static/media/{{ user.touxiang }}" class=""
+                                     style="position: absolute;top: 20px; right: 10px;border-radius: 25px;border: none;"
+                                     width="50px" height="50px"/>
+                            </div>
+                            <div class="col-md-9 column">
+
+                                <br>
+                                <a href="#"><strong>{{ user.name }}</strong></a>
+                            </button>
+                                <hr>
 
 
-                                <div class="caption">
-                                    <h3>
-
-                                    </h3>
-                                    <p>
-
-                                    </p>
-                                    <p>
-
-                                    </p>
-                                </div>
-
-                            {% endfor %}
+                            </div>
+                            <p>&nbsp;&nbsp;&nbsp;<a
+                                    href="">帖子:{{ user.tiezi.all|length }}</a>&nbsp;&nbsp;&nbsp;关注:{{ user.guanzhu.all|length }}
+                                &nbsp;&nbsp;&nbsp;评论:{{ user.pinglun.all|length }}
+                            </p>
                         </div>
                     </div>
                 </div>

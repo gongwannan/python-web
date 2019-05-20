@@ -52,11 +52,9 @@
                                    aria-haspopup="true"
                                    aria-expanded="false">精选板块 <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">Separated link</a></li>
+                                    {% for i in jingxuan_list %}
+                            <li><a href="/luntan/luntan/{{ i.id }}">{{ i.name }}</a></li>
+                            {% endfor %}
                                 </ul>
                             </li>
                             <li>

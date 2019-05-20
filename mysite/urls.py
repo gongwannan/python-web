@@ -22,6 +22,7 @@ from django.contrib.staticfiles.urls import static
 
 
 
+
 urlpatterns = [
     path('luntan/', include('luntan.urls')),
     path('login/', include('login.urls')),

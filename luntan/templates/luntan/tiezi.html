@@ -28,15 +28,17 @@
             //名称前后显示，影响控件显示位置
         });
     </script>
-    <script type="text/javascript">
-        function cause_submit() {
-            var len = form1.content.value.length;
-            if (len < 10) {
-                alert('回帖不少于十个字');
-            }
-            document.getElementById('id_content').focus();
-        }
-    </script>
+{#        <script type="text/javascript">#}
+{#            function cause_submit() {#}
+{#                var vl = document.getElementById('id_content').textContent;#}
+{#                var len = vl.length;#}
+{#                if (len < 10) {#}
+{#                    alert('回帖不少于十个字');#}
+{#                    return false;#}
+{#                }#}
+{#                document.getElementById('pinglun').scrollIntoView();#}
+{#            }#}
+{#        </script>#}
     <script type="text/javascript">
         function cause_reply(obj) {
             var name = "#name" + obj + ">p";
@@ -75,11 +77,9 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">精选板块 <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
+                            {% for i in jingxuan_list %}
+                                <li><a href="/luntan/luntan/{{ i.id }}">{{ i.name }}</a></li>
+                            {% endfor %}
                         </ul>
                     </li>
                     <li>
@@ -90,6 +90,22 @@
                 </ul>
                 <div class="row clearfix">
                     <div class="col-md-9 column">
+                        <div class="col-md-6 column">
+                            <ul class="breadcrumb">
+                                <li>
+                                    <a href="/news/news/">论坛首页</a>
+                                </li>
+                                <li>
+                                    <a href="/news/jishunews/">{{ luntan.belong.name }}</a>
+                                </li>
+                                <li>
+                                    <a href="/luntan/luntan/{{ luntan.id }}">{{ luntan.name }}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6 column">
+                        </div>
+                    <div class="col-lg-12 column">
                         <p>
                             楼主
                         </p>
@@ -212,8 +228,9 @@
                             </div>
                         </div>
                     </div>
+                    </div>
                     <div class="col-md-3 column">
-                        <h4>推荐热帖</h4>
+                        <h4>猜你喜欢</h4>
                         {% for tuijian in tuijian_list %}
                             <div class="row">
                                 <div class="col-md-12">
@@ -229,6 +246,7 @@
             </div>
         </div>
     </div>
+
     <div class="container">
         <div class="row clearfix">
             <div class="text-center ">

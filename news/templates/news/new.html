@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-{% block title %}主页{% endblock %}
+{% block title %}新闻{% endblock %}
 
 {% block css %}
 
@@ -25,6 +25,7 @@
             color: black;
         }
     </style>
+
     <script>
         $
         (document).ready(function (e) {
@@ -56,26 +57,23 @@
             </div>
             <div class="col-md-3 column">
                 <div class="col-md-3 column">
+                    <img alt="300x200" src="/static/media/{{ new.author.touxiang }}" class=""
+                         style="position: absolute;top: 20px; right: 10px;border-radius: 25px;border: none;"
+                         width="50px" height="50px"/>
                 </div>
                 <div class="col-md-9 column">
 
-                <div class="thumbnail">
-
-                    <img alt="300x200" src="/static/media/{{ new.author.touxiang }}"/>
-
-                    <div class="caption">
-
-                        <p>
-                            <a href="#"><strong>{{ new.author.name }}</strong></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="right" href="">关注</button>
-                        </p>
-
-                    </div>
-
-                </div>
+                    <br>
+                    <a href="#"><strong>{{ new.author.name }}</strong></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="right" href="">关注</button>
                     <hr>
-                    <p>&nbsp;&nbsp;&nbsp;<a href="">原创:{{ new.author.news.all|length  }}</a>&nbsp;&nbsp;&nbsp;关注:{{ new.author.follows.all|length }}&nbsp;&nbsp;&nbsp;粉丝:{{ user.fans.all|length }}</p>
+
+
                 </div>
+                <h4>&nbsp;&nbsp;&nbsp;<a
+                        href="">原创:{{ new.author.news.all|length }}</a>&nbsp;&nbsp;&nbsp;关注:{{ new.author.follows.all|length }}&nbsp;&nbsp;&nbsp;粉丝:{{ user.fans.all|length }}
+                    &nbsp;&nbsp;&nbsp;评论:
+                </h4>
             </div>
 
         </div>

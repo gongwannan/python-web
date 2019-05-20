@@ -4,6 +4,17 @@
     用户信息
 {% endblock %}
 {% block content %}
+    <script type="text/javascript" src="/admin/jsi18n/"></script>
+    <script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
+    <script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+    <script type="text/javascript" src="/static/admin/js/core.js"></script>
+    <script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+    <script type="text/javascript" src="/static/admin/js/actions.js"></script>
+    <script type="text/javascript" src="/static/admin/js/urlify.js"></script>
+    <script type="text/javascript" src="/static/admin/js/prepopulate.js"></script>
+    <script type="text/javascript" src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+    <script type="text/javascript" src="/static/admin/js/calendar.js"></script>
+    <script type="text/javascript" src="/static/admin/js/admin/DateTimeShortcuts.js"></script>
     <style>
         a:link {
             color: blue;
@@ -113,21 +124,68 @@
                                 </div>
                             </div>
                             <div class="col-md-10 column">
-                                <p>ID: {{ user.name }}<a href="#" style="float:right;">个人主页></a></p>
+                                <p>ID: {{ user.name }}<a href="/login/geren/" style="float:right;">个人主页></a></p>
                                 <p>关注:{{ user.follows.all|length }}粉丝:{{ user.fans.all|length }}</p>
                                 <hr>
-                                <p>昵称:{{ user.name }} <a href="#" style="float: right;">修改资料</a></p>
-                                <p>实名:{{ user.truename }}</p>
-                                <p>性别:{{ user.sex }}</p>
-                                <p>生日:{{ user.birthday }}</p>
-                                <p>地区:{{ user.diqu }}</p>
-                                <p>行业:{{ user.job }}</p>
-                                <p>简介:{{ user.jianjie }}</p>
+                                <p>昵称:{{ user.name }} <a
+                                        id="modal-535653" href="#modal-container-535653" role="button"
+                                        class="btn" style="float: right" data-toggle="modal">修改资料</a>
+
+                                    <div class="modal fade" id="modal-container-535653" role="dialog"
+                                         aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-hidden="true">×
+                                                    </button>
+                                                    <h4 class="modal-title" id="myModalLabel">
+                                                        修改个人信息
+                                                    </h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="/login/usermessage/" method="post">
+                                {% csrf_token %}
+                                <p>{{ xinxi_form.name.label_tag }}
+                                    {{ xinxi_form.name }}</p>
+                                <p> {{ xinxi_form.truename.label_tag }}
+                                    {{ xinxi_form.truename }}</p>
+                                <p>{{ xinxi_form.sex.label_tag }}
+                                    {{ xinxi_form.sex }}</p>
+                                <p>{{ xinxi_form.birthday.label_tag }}
+                                    {{ xinxi_form.birthday }}</p>
+                                <p>
+                                    {{ xinxi_form.diqu.label_tag }}
+                                    {{ xinxi_form.diqu }}
+                                </p>
+                                <p>{{ xinxi_form.jianjie.label_tag }}
+                                    {{ xinxi_form.jianjie }}</p>
+
+
                             </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                                </button>
+                                <button type="submit" class="btn btn-primary">提交</button>
+                            </div>
+                            </form>
                         </div>
+
                     </div>
+
                 </div>
+                </p>
+                <p>实名:{{ user.truename }}</p>
+                <p>性别:{{ user.sex }}</p>
+                <p>生日:{{ user.birthday }}</p>
+                <p>地区:{{ user.diqu }}</p>
+                <p>行业:{{ user.job }}</p>
+                <p>简介:{{ user.jianjie }}</p>
             </div>
         </div>
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
 {% endblock %}
