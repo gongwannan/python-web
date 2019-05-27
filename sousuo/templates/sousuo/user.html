@@ -24,18 +24,18 @@
                                 <!-- Collect the nav links, forms, and other content for toggling -->
                                 <div class="collapse navbar-collapse" id="my-nav">
                                     <ul class="nav navbar-nav">
-                                        <li><a href="/news/news/">全部</a></li>
-                                        <li><a href="/news/news/">新闻</a></li>
+                                        <li><a href="/sousuo/sousuo/">全部</a></li>
+                                        <li><a href="/sousuo/news/">新闻</a></li>
                                     </ul>
                                     <ul class="nav navbar-nav navbar-left">
-                                        <li><a href="/luntan/community/">帖子</a></li>
-                                        <li><a href="/login/about/">评论</a></li>
-                                        <li><a href="/login/about/">用户</a></li>
+                                        <li><a href="/sousuo/tiezi/">帖子</a></li>
+                                        <li class="active"><a href="/sousuo/yonghu/">用户</a></li>
 
                                     </ul>
-                                    <form class="navbar-form navbar-right" action="/sousuo/">
+                                    <form class="navbar-form navbar-right" action="/sousuo/yonghu/" method="post">
+                                        {% csrf_token %}
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="请输入搜索内容">
+                                            <input type="text" class="form-control" name="content" placeholder="请输入搜索内容">
                                         </div>
                                         <button type="submit" class="btn btn-danger">搜索</button>
                                     </form>
@@ -44,40 +44,25 @@
                             </div><!-- /.container-fluid -->
                         </nav>
 
-                        {% for new in news_list %}
+                        {% for user in user_list %}
 
                             <div class="thumbnail">
 
-                                <div class="caption">
-                                    <a href="/news/new/{{ new.id }}">
-
-                                        <strong>{{ new.title }}</strong>
-                                    </a>
-                                    <p>{{ new.author.name }}__{{ new.p_time }}</p>
-
-                                    <div class="summary oneline">
-                                        <p>
-                                            {{ new.contenthead }}
-                                        </p>
-                                    </div>
-                                </div>
+                                <div class="col-md-3 column">
+                                <img alt="300x200" src="/static/media/{{ user.touxiang }}" class=""
+                                     style="position: absolute;top: 20px; right: 10px;border-radius: 25px;border: none;"
+                                     width="50px" height="50px"/>
                             </div>
-                        {% endfor %}
-                        {% for tiezi in tiezi_list %}
+                            <div class="col-md-9 column">
 
-                            <div class="thumbnail">
-
-                                <div class="caption">
-                                    <a href="/luntan/tiezi/{{ tiezi.id }}">
-
-                                        <strong>{{ tiezi.title }}</strong>
-                                    </a>
-                                    <p>{{ tiezi.author.name }}__{{ tiezi.p_time }}</p>
+                                <br>
+                                <a href="#"><strong>{{ user.name }}</strong></a>
+                            </button>
+                                <hr>
 
 
-                                </div>
                             </div>
-
+                            </div>
                         {% endfor %}
                     </div>
                     <div class="col-md-3 column">

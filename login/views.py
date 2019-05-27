@@ -203,16 +203,6 @@ def usermessage(request):
     xinxi_form = forms.UsermessageForm()
     return render(request, 'login/usermessage.html', locals())
 
-
-def sousuo(request):
-    if request.method == "POST":
-        content = request.POST["content"]
-        news_list = News.objects.filter(content__icontains=content)
-        tiezi_list = Tiezi.objects.filter(title__icontains=content)
-        user_list = models.User.objects.filter(name__icontains=content)
-    return render(request, 'sousuo.html', locals())
-
-
 def about(request):
     pass
     return render(request, 'login/about.html', locals())
