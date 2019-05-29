@@ -10,12 +10,12 @@
     <script src="/static/tinymce/tinymce.min.js"></script>
 
 
-    <script>
+     <script>
         tinymce.init({
             language: "zh_CN",
             selector: 'textarea.content', //表单控件.样式名称 - 绑定textarea
-            height: "180", //高度
-            width: "280", //宽度
+            height: "100", //高度
+            width: "100", //宽度
             toolbar_items_size: 'small', //控件大小
             menubar: true, //是否显示菜单栏
             plugins: "link code,autoresize",
@@ -24,7 +24,9 @@
             autoresize_min_height: 350,
             autoresize_on_init: true,
             autoresize_overflow_padding: 50,
-            toolbar: "link code",  //控件区，显示控件
+            toolbar1: 'undo redo | styleselect | bold italic | link image',
+            // 工具栏2
+            toolbar2: 'alignleft aligncenter alignright',//控件区，显示控件
             //名称前后显示，影响控件显示位置
         });
     </script>

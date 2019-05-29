@@ -1,10 +1,8 @@
 import datetime
 import hashlib
-from luntan.models import Tiezi
 import pytz
 from django.conf import settings
 from django.shortcuts import render, redirect
-from news.models import News
 from . import models
 from . import forms
 from login import my_utils

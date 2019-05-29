@@ -1,14 +1,16 @@
 #!/user/bin/env/python
 # -*- coding:utf-8 -*_
-#作者:gongwannan
+# 作者:gongwannan
 from django.urls import path
 from . import views
 
-urlpatterns =[
+urlpatterns = [
     path('news/', views.news),
     path('new/<int:id>', views.new),
     path('firenews/', views.rdnews),
     path('hangyenews/', views.hynews),
     path('jishunews/', views.jsnews),
-
+    path('boke/', views.boke),
+    path('upload_img/', views.upload_img, name='upload_img'),
 ]
+app_name = 'news'
