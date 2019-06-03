@@ -23,19 +23,63 @@
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active" id="panel-551863">
-                                    <p>
-                                        I'm in Section 1.
-                                    </p>
+                                    {% for new in news_list %}
+
+                                        <div class="thumbnail">
+
+                                            <div class="caption">
+                                                <a href="/news/new/{{ new.id }}">
+
+                                                    <strong>{{ new.title }}</strong>
+                                                </a>
+                                                <p>{{ new.author.name }}__{{ new.p_time }}</p>
+
+                                                <div class="summary oneline">
+                                                    <p>
+                                                        {{ new.contenthead }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+
                                 </div>
                                 <div class="tab-pane" id="panel-87871">
-                                    <p>
-                                        Howdy, I'm in Section 2.
-                                    </p>
+                                    {% for tiezi in tiezi_list %}
+
+                                        <div class="thumbnail">
+
+                                            <div class="caption">
+                                                <a href="/luntan/tiezi/{{ tiezi.id }}">
+
+                                                    <strong>{{ tiezi.title }}</strong>
+                                                </a>
+                                                <p>{{ tiezi.author.name }}__{{ tiezi.p_time }}</p>
+
+
+                                            </div>
+                                        </div>
+
+                                    {% endfor %}
                                 </div>
                                 <div class="tab-pane" id="panel-1">
-                                    <p>
-                                        Howdy, I'm in Section 2.
-                                    </p>
+                                    {% for pinglun in pinglun_list %}
+
+                                        <div class="thumbnail">
+
+                                            <div class="caption">
+                                                <a href="/luntan/tiezi/{{ pinglun.tiezi.id }}">
+
+                                                    <strong>{{ pinglun.tiezi.title }}</strong>
+                                                </a>
+                                                <p>{{ pinglun.author.name }}<br>
+                                                    {% autoescape off %}{{ pinglun.content }}{% endautoescape %}__{{ pinglun.p_time }}</p>
+
+
+                                            </div>
+                                        </div>
+
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>

@@ -7,6 +7,8 @@ from . import models
 from . import forms
 from login import my_utils
 import os
+from luntan.models import Tiezi,Pinglun
+from news.models import News
 
 
 # Create your views here.
@@ -209,5 +211,8 @@ def about(request):
 def geren(request):
     name = request.session['user_name']
     user = models.User.objects.get(name=name)
+    tiezi_list = Tiezi.objects.filter(author=user)
+    news_list = News.objects.filter(author=user)
+    pinglun_list = Pinglun.objects.filter(author=user)
 
     return render(request, 'login/geren.html', locals())

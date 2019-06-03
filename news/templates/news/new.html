@@ -65,13 +65,30 @@
 
                     <br>
                     <a href="#"><strong>{{ new.author.name }}</strong></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="right" href="">关注</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<form action="/news/new/{{ id }}" method="post"
+                                                                          style="float: right">
+                    {% csrf_token %}
+                    <input type="hidden" name="author_id" value="{{ new.author_id }}">
+
+                    {% if new.author.name in gaunzhu %}
+                        <button type="submit" class="  pull-right"
+                                onclick="show1({{ luntan.id }})">
+                            <span id="false{{ luntan.id }}">已关注</span>
+                        </button>
+                    {% else %}
+                        <button type="submit" class=" pull-right"
+                                onclick="show1({{ luntan.id }})">
+                            <span id="true{{ luntan.id }}">关注</span>
+                        </button>
+                    {% endif %}
+
+                </form>
                     <hr>
 
 
                 </div>
                 <h4>&nbsp;&nbsp;&nbsp;<a
-                        href="">原创:{{ new.author.news.all|length }}</a>&nbsp;&nbsp;&nbsp;关注:{{ new.author.follows.all|length }}&nbsp;&nbsp;&nbsp;粉丝:{{ user.fans.all|length }}
+                        href="">原创:{{ new.author.news.all|length }}</a>&nbsp;&nbsp;&nbsp;关注:{{ new.author.follows.all|length }}&nbsp;&nbsp;&nbsp;粉丝:{{ new.author.fans.all|length }}
                     &nbsp;&nbsp;&nbsp;评论:
                 </h4>
             </div>
