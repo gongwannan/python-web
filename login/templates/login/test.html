@@ -1,29 +1,107 @@
 {% extends 'base.html' %}
 {% block content %}
-
-    <link rel="stylesheet" href="/static/editor.md-master/css/editormd.min.css"/>
-    <div id="editor">
-        <!-- Tips: Editor.md can auto append a `<textarea>` tag -->
-        <textarea style="display:none;"></textarea>
-    </div>
-    <script src="/static/editor.md-master/examples/js/jquery.min.js"></script>
-    <script src="/static/editor.md-master/editormd.min.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            var editor = editormd("editor", {
-                width: "100%",
-                height: 650,
-                codeFold: true,
-                saveHTMLToTextarea: true,
-                searchReplace: true,
-                taskList: true,
-                tocm: true,
-                //theme: "dark",
-                //previewTheme: "dark",
-                //editorTheme: "pastel-on-dark",
-                markdown: "在此编辑博客",     // dynamic set Markdown text
-                path: "/static/editor.md-master/lib/"  // Autoload modules mode, codemirror, marked... dependents libs path
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <script type="text/javascript">
+            $(function () {
+                $(".panel-heading").click(function (e) {
+                    /*切换折叠指示图标*/
+                    $(this).find("span").toggleClass("glyphicon-chevron-down");
+                    $(this).find("span").toggleClass("glyphicon-chevron-up");
+                });
             });
-        });
-    </script>
+        </script>
+
+
+        <style>
+
+        </style>
+        <style>
+            #right {
+                position: fixed;
+                top: 100px;
+                left: 0px;
+            }
+
+            .content {
+                height: 1700px;
+                border: 1px solid white;
+            }
+        </style>
+    </head>
+    <body>
+    <div id="right">
+        <div class="panel-group table-responsive classify" role="tablist">
+            <div class="panel panel-primary leftMenu">
+                <!-- 利用data-target指定要折叠的分组列表 -->
+                <div class="panel-heading" id="collapseListGroupHeading1" data-toggle="collapse"
+                     data-target="#collapseListGroup1" role="tab">
+                    <h4 class="panel-title">
+                        技术类
+                        <span class="glyphicon glyphicon-chevron-up right"></span>
+                    </h4>
+                </div>
+                <!-- .panel-collapse和.collapse标明折叠元素 .in表示要显示出来 -->
+                <div id="collapseListGroup1" class="panel-collapse collapse in" role="tabpanel"
+                     aria-labelledby="collapseListGroupHeading1">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="#">HTML5</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="">CSS</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="">JavaScript</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="">Vue.js</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="">Django</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="">MySql</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="">Python</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="">Java</a>
+                        </li>
+                    </ul>
+                </div>
+            </div><!--panel end-->
+            <div class="panel panel-primary leftMenu">
+                <div class="panel-heading" id="collapseListGroupHeading2" data-toggle="collapse"
+                     data-target="#collapseListGroup2" role="tab">
+                    <h4 class="panel-title">
+                        其他类
+                        <span class="glyphicon glyphicon-chevron-down right"></span>
+                    </h4>
+                </div>
+                <div id="collapseListGroup2" class="panel-collapse collapse" role="tabpanel"
+                     aria-labelledby="collapseListGroupHeading2">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="">感悟</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="">游记</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="">日记</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="content">
+
+    </div>
+    </body>
+    </html>
 {% endblock %}

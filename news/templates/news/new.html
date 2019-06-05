@@ -25,11 +25,24 @@
             color: black;
         }
     </style>
+    <style>
+        .like {
+            font-size: 66px;
+            color: #ccc;
+            cursor: pointer;
+        }
 
+        .cs {
+            color: #f00;
+        }
+    </style>
+
+    <script typet="text/javascript" src="/static/js/jq.min.js"></script>
     <script>
-        $
-        (document).ready(function (e) {
-            $('#divld').html('{{ new.content }}');
+        $(function () {
+            $(".like").click(function () {
+                $(this).toggleClass('cs');
+            })
         })
     </script>
 
@@ -49,6 +62,11 @@
         </style>
         <div class="row clearfix">
             <div class="col-md-9 column">
+                <h1>{{ new.title }}</h1>
+                <p class="like" style="float:left">&#10084;</p>
+                <hr>
+                {{ new.p_time }}&nbsp;&nbsp;&nbsp;<a
+                    href="#">{{ new.author.name }}</a>&nbsp;&nbsp;&nbsp;阅读数：{{ new.yuedushu }}
                 <hr>
                 {% autoescape off %}
                     {{ new.content }}

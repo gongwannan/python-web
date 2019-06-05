@@ -32,6 +32,7 @@ def login(request):
                     request.session['is_login'] = True
                     request.session['user_id'] = user.id
                     request.session['user_name'] = user.name
+                    request.session['touxiang'] = str(user.touxiang)
                     return redirect('/news/news/')
                 else:
                     message = "密码不正确！"
@@ -216,3 +217,15 @@ def geren(request):
     pinglun_list = Pinglun.objects.filter(author=user)
 
     return render(request, 'login/geren.html', locals())
+
+def shoucang(request):
+    pass
+    return render(request, 'login/shoucang.html', locals())
+
+def guanzhu(request):
+    pass
+    return render(request, 'login/guanzhu.html', locals())
+
+def fensi(request):
+    pass
+    return render(request, 'login/fensi.html', locals())

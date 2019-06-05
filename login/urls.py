@@ -14,5 +14,7 @@ urlpatterns = [
     path('usermessage/', views.usermessage),
     path('about/', views.about),
     path('geren/', views.geren),
-
+    path('shoucang/', views.shoucang),
+    path('guanzhu/', views.guanzhu),
+    path('fensi/',views.fensi),
 ]

@@ -3,16 +3,23 @@
 {% block title %}主页{% endblock %}
 {% load static %
 {% block css %}
-
-{% endblock %}
-{% block content %}
-    <!DOCTYPE html>
-    <html lang="zh-CN">
     <style>
         body {
             background-repeat: no-repeat;
             background-size: 100%, 100%;
             background-attachment: fixed;
+        }
+    </style>
+    <style>
+        #right {
+            position: fixed;
+            top: 100px;
+            left: 0px%;
+        }
+
+        .content {
+            height: 1700px;
+            border: 1px solid white;
         }
     </style>
     <style>
@@ -47,6 +54,70 @@
     {#<body background="/static/images/timg.jpeg">#}
     {##}
     {#</body>#}
+{% endblock %}
+{% block content %}
+    <head>
+        <script type="text/javascript">
+            $(function () {
+                $(".panel-heading").click(function (e) {
+                    /*切换折叠指示图标*/
+                    $(this).find("span").toggleClass("glyphicon-chevron-down");
+                    $(this).find("span").toggleClass("glyphicon-chevron-up");
+                });
+            });
+        </script>
+    </head>
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+    <div id="right">
+        <div class="panel-group table-responsive classify" role="tablist">
+            <div class="panel panel-primary leftMenu">
+                <!-- 利用data-target指定要折叠的分组列表 -->
+                <div class="btn" id="collapseListGroupHeading1" data-toggle="collapse"
+                     data-target="#collapseListGroup1" role="tab">
+                    <h4 class="panel-title">
+                        技术类
+                        <span class="glyphicon glyphicon-chevron-up right"></span>
+                    </h4>
+                </div>
+                <!-- .panel-collapse和.collapse标明折叠元素 .in表示要显示出来 -->
+                <div id="collapseListGroup1" class="panel-collapse collapse in" role="tabpanel"
+                     aria-labelledby="collapseListGroupHeading1">
+                    <ul class="list-group">
+                        {% for i in blog_list %}
+                        <li class="list-group-item">
+                            <a href="/news/blog/{{ i.id }}">{{ i.name }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div><!--panel end-->
+            <div class="panel panel-primary leftMenu">
+                <div class="btn" id="collapseListGroupHeading2" data-toggle="collapse"
+                     data-target="#collapseListGroup2" role="tab">
+                    <h4 class="panel-title">
+                        其他类
+                        <span class="glyphicon glyphicon-chevron-down right"></span>
+                    </h4>
+                </div>
+                <div id="collapseListGroup2" class="panel-collapse collapse" role="tabpanel"
+                     aria-labelledby="collapseListGroupHeading2">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="">感悟</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="">游记</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="">日记</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
     <div class="container">
         <div class="row clearfix">
             <div class="col-md-12 column">
@@ -186,12 +257,12 @@
 
                                         <strong>{{ new.title }}</strong>
                                     </a>
-                                    <p>{{ new.author.name}}__{{ new.p_time }}</p>
+                                    <p>{{ new.author.name }}__{{ new.p_time }}</p>
 
                                     <div class="summary oneline">
-                                    <p>
-                                        {{ new.contenthead }}
-                                    </p>
+                                        <p>
+                                            {{ new.contenthead }}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -201,7 +272,7 @@
                         <h4>今日推荐</h4>
                         {% for new in commend_list %}
                             <div class="thumbnail">
-                                <a href="/news/new/{{new.id }}">
+                                <a href="/news/new/{{ new.id }}">
                                     <img alt="300x200" src="/static/images/{{ new.img }}"/>
                                 </a>
                                 <div class="caption">
@@ -244,5 +315,4 @@
                 </div>
             </div>
         </div>
-    </html>
 {% endblock %}

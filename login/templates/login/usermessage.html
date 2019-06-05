@@ -43,26 +43,37 @@
 
         /* 正在被点击的链接 */
     </style>
+    <style type="text/css">
+        .wrap li {
+            height: 50px;
+            margin: 1px;
+        }
 
+        .active {
+            font-weight: bold;
+            background-color:brown;
+            color:white;
+        }
+    </style>
 
     <div class="container">
         <div class="row clearfix">
             <div class="col-md-12 column">
                 <div class="row clearfix">
                     <div class="col-md-2 column">
-                        <ul class="nav nav-list">
+                        <ul class="nav nav-list" style="background:pink">
 
                             <li>
                                 <a href="/login/usermessage/"class="active">个人资料</a>
                             </li>
                             <li>
-                                <a href="#">我的收藏</a>
+                                <a href="/login/shoucang/">我的收藏</a>
                             </li>
                             <li>
-                                <a href="#">我的关注</a>
+                                <a href="/login/guanzhu">我的关注</a>
                             </li>
                             <li>
-                                <a href="#">我的粉丝</a>
+                                <a href="/login/fensi/">我的粉丝</a>
                             </li>
                             <li>
                                 <a href="#">我的博客</a>
@@ -78,8 +89,9 @@
                                             <img alt="300x200" src="/static/media/{{ user.touxiang }}"/>
                                             <div class="caption">
                                                 <p class="text-center">
+
                                                     <a id="modal-581720" href="#modal-container-581720" role="button"
-                                                       class="btn" data-toggle="modal">修改头像</a>
+                                                       class="btn" data-toggle="modal" style="color: blue">修改头像</a>
 
                                                 <div class="modal fade" id="modal-container-581720" role="dialog"
                                                      aria-labelledby="myModalLabel"
@@ -90,7 +102,7 @@
                                                                 <button type="button" class="close" data-dismiss="modal"
                                                                         aria-hidden="true">×
                                                                 </button>
-                                                                <h4 class="modal-title" id="myModalLabel">
+                                                                <h4 class="modal-title" id="myModalLabel" style="color: blue">
                                                                     上传头像
                                                                 </h4>
                                                             </div>
@@ -124,12 +136,12 @@
                                 </div>
                             </div>
                             <div class="col-md-10 column">
-                                <p>ID: {{ user.name }}<a href="/login/geren/" style="float:right;">个人主页></a></p>
+                                <p>ID: {{ user.name }}<a href="/login/geren/" style="float:right; color: blue">个人主页></a></p>
                                 <p>关注:{{ user.follows.all|length }}粉丝:{{ user.fans.all|length }}</p>
                                 <hr>
                                 <p>昵称:{{ user.name }} <a
                                         id="modal-535653" href="#modal-container-535653" role="button"
-                                        class="btn" style="float: right" data-toggle="modal">修改资料</a>
+                                        class="btn" style="float: right; color: blue" data-toggle="modal">修改资料</a>
 
                                     <div class="modal fade" id="modal-container-535653" role="dialog"
                                          aria-labelledby="myModalLabel" aria-hidden="true">
