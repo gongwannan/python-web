@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}博客{% endblock %}
+{% block content %}
+
+    <style>
+        a:link {
+            color: black;
+        }
+
+        /* 未被访问的链接 */
+        a:visited {
+            color: black;
+        }
+
+        /* 已被访问的链接 */
+        a:hover {
+            color: #FF00FF;
+        }
+
+        /* 鼠标指针移动到链接上 */
+        a:active {
+            color: black;
+        }
+
+        left:
+
+        50
+        %
+        ;
+
+        /* 正在被点击的链接 */
+
+    </style>
+
+    <script type="text/javascript">
+        function show1(obj) {
+            var t = "true" + obj;
+            var f = "false" + obj;
+            var aTrue = document.getElementById(t);
+            var aFalse = document.getElementById(f);
+            if (aTrue.style.display != "none") {
+                aTrue.style.display = "none";
+                aFalse.style.display = "inline";
+            } else {
+                aTrue.style.display = "inline";
+                aFalse.style.display = "none";
+            }
+        }
+
+    </script>
+    <script type="text/javascript">
+        function show2(obj) {
+            var t = "True" + obj;
+            var f = "False" + obj;
+            var aTrue = document.getElementById(t);
+            var aFalse = document.getElementById(f);
+            if (aTrue.style.display != "none") {
+                aTrue.style.display = "none";
+                aFalse.style.display = "inline";
+            } else {
+                aTrue.style.display = "inline";
+                aFalse.style.display = "none";
+            }
+        }
+
+    </script>
+    {% if message %}
+        <div class="alert alert-warning">{{ message }}</div>
+    {% endif %}
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                {% if request.session.is_login %}
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4>
+                            提示!
+                        </h4> 你好,<strong>{{ request.session.user_name }}</strong>！欢迎回来！{{ count }}
+                    </div>
+                {% else %}
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4>
+                            提示!
+                        </h4> 您尚未登录只能访问公开内容! <a href="/login/" class="alert-link">登录</a>
+                    </div>
+                {% endif %}
+
+                <div class="container">
+                    <div class="row clearfix">
+                        <div class="col-md-12 column">
+                            <div class="page-header">
+                                <h1>
+                                    <small>极客社区博客/{{ blogmk.name }}模块</small>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-md-2 column">
+                        <h4><a href="/news/news/">博客首页</a></h4>
+                        <div class="panel-group table-responsive classify" role="tablist">
+                            <div class="panel panel-primary leftMenu">
+                                <!-- 利用data-target指定要折叠的分组列表 -->
+                                <div class="btn" id="collapseListGroupHeading1" data-toggle="collapse"
+                                     data-target="#collapseListGroup1" role="tab">
+                                    <h4 class="panel-title">
+                                        技术类
+                                        <span class="glyphicon glyphicon-chevron-up right"></span>
+                                    </h4>
+                                </div>
+                                <!-- .panel-collapse和.collapse标明折叠元素 .in表示要显示出来 -->
+                                <div id="collapseListGroup1" class="panel-collapse collapse in" role="tabpanel"
+                                     aria-labelledby="collapseListGroupHeading1">
+                                    <ul class="list-group">
+                                        {% for i in blogmk_list %}
+                                            <li class="list-group-item">
+                                                <a href="/news/blogmk/{{ i.id }}">{{ i.name }}</a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div><!--panel end-->
+                            <div class="panel panel-primary leftMenu">
+                                <div class="btn" id="collapseListGroupHeading2" data-toggle="collapse"
+                                     data-target="#collapseListGroup2" role="tab">
+                                    <h4 class="panel-title">
+                                        其他类
+                                        <span class="glyphicon glyphicon-chevron-down right"></span>
+                                    </h4>
+                                </div>
+                                <div id="collapseListGroup2" class="panel-collapse collapse" role="tabpanel"
+                                     aria-labelledby="collapseListGroupHeading2">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                            <a href="">感悟</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="">游记</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <a href="">日记</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-10 column">
+                        <ul class="breadcrumb">
+                            <li>
+                                <a href="/news/news/">博客首页</a>
+                            </li>
+                            <li>
+                                <a href="/news/jishunews/">{{ blogmk.name }}</a>
+                            </li>
+                            <li>
+                                <a href="/news/blogmk/{{ id }}">{{ blogmk.name }}</a>
+                            </li>
+                        </ul>
+
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>
+                                    主题
+                                </th>
+                                <th>
+                                    作者
+                                </th>
+                                <th>
+                                    发表时间
+                                </th>
+                            </tr>
+                            </thead>
+                            {% for blog in blog_list %}
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <a href="/news/new/{{ blog.id }}">{{ blog.title }}</a>
+                                    </td>
+                                    <td>
+                                        {{ blog.author.name }}
+                                    </td>
+                                    <td>
+                                        {{ blog.p_time }}
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+
+
+
+{% endblock %}

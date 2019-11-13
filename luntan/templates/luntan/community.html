@@ -23,38 +23,9 @@
             color: black;
         }
 
-        left:
-
-        50
-        %
-        ;
-
         /* 正在被点击的链接 */
 
     </style>
-{##}
-{#    <script type="text/javascript">#}
-{#        function show1(obj) {#}
-{#            var t = "true" + obj;#}
-{#            var f = "false" + obj;#}
-{#            var aTrue = document.getElementById(t);#}
-{#            var aFalse = document.getElementById(f);#}
-{#            if (aTrue.style.display != "none") {#}
-{#                aTrue.style.display = "none";#}
-{#                aFalse.style.display = "inline";#}
-{#            } else {#}
-{#                aTrue.style.display = "inline";#}
-{#                aFalse.style.display = "none";#}
-{#            }#}
-{#        }#}
-{##}
-{#    </script>#}
-    {#    <script type="text/javascript">#}
-    {#        function show2(obj) {#}
-    {#            window.location.href = 'http://localhost:8000/luntan/community/'#}
-    {#        }#}
-    {##}
-    {#    </script>#}
     {% if message %}
         <div class="alert alert-warning">{{ message }}</div>
     {% endif %}
@@ -70,7 +41,7 @@
                            aria-expanded="false">精选板块 <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             {% for i in jingxuan_list %}
-                            <li><a href="/luntan/luntan/{{ i.id }}">{{ i.name }}</a></li>
+                                <li><a href="/luntan/luntan/{{ i.id }}">{{ i.name }}</a></li>
                             {% endfor %}
                         </ul>
                     </li>
@@ -277,6 +248,65 @@
                     <div class="row clearfix">
                         <div class="col-md-2 column">
                             <h4><a href="/luntan/community/">论坛首页</a></h4>
+                            <h2>Basic Tree</h2>
+                            <div style="margin:20px 0;"></div>
+                            <div class="easyui-panel" style="padding:5px">
+                                <ul class="easyui-tree">
+                                    <li>
+                                        <span>我的收藏</span>
+                                        <ul>
+                                            {% for luntan in guanzhuluntan_list %}
+                                                <li data-options="state:'closed'">
+
+                                                    <span>{{ luntan.luntan.name }}</span>
+                                                    <ul>
+                                                        {% for i in luntan.luntan.fenlei.all %}
+                                                            <li>
+                                                                <a href="/luntan/luntan/{{ i.id }}">
+                                                                    {{ i.name }}
+                                                                </a>
+                                                            </li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                    {% for luntan in luntan_list %}
+                                        <li>
+                                            <span>{{ luntan.name }}</span>
+                                            <form action="/luntan/community/" method="post" style="float: right">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="luntan_id" value="{{ luntan.id }}">
+
+                                                {% if luntan.name in guanzhuluntan %}
+                                                    <button type="submit" class="  pull-right"
+                                                            onclick="show1({{ luntan.id }})">
+                                                        <span id="false{{ luntan.id }}">已关注</span>
+                                                    </button>
+                                                {% else %}
+                                                    <button type="submit" class=" pull-right"
+                                                            onclick="show1({{ luntan.id }})">
+                                                        <span id="true{{ luntan.id }}">关注</span>
+                                                    </button>
+                                                {% endif %}
+
+                                            </form>
+
+                                            <ul>
+                                                {% for i in luntan.fenlei.all %}
+                                                    <li>
+                                                        <a href="/luntan/luntan/{{ i.id }}">
+                                                            {{ i.name }}
+                                                        </a>
+                                                    </li>
+                                                {% endfor %}
+
+                                            </ul>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
                             <div class="panel-group" id="panel-340324">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
@@ -325,17 +355,17 @@
                                                 {% csrf_token %}
                                                 <input type="hidden" name="luntan_id" value="{{ luntan.id }}">
 
-                                                    {% if luntan.name in guanzhuluntan %}
-                                                        <button type="submit" class="  pull-right"
-                                                        onclick="show1({{ luntan.id }})">
-                                                            <span id="false{{ luntan.id }}" >已关注</span>
-                                                        </button>
-                                                    {% else %}
-                                                        <button type="submit" class=" pull-right"
-                                                        onclick="show1({{ luntan.id }})">
-                                                            <span id="true{{ luntan.id }}" >关注</span>
-                                                        </button>
-                                                    {% endif %}
+                                                {% if luntan.name in guanzhuluntan %}
+                                                    <button type="submit" class="  pull-right"
+                                                            onclick="show1({{ luntan.id }})">
+                                                        <span id="false{{ luntan.id }}">已关注</span>
+                                                    </button>
+                                                {% else %}
+                                                    <button type="submit" class=" pull-right"
+                                                            onclick="show1({{ luntan.id }})">
+                                                        <span id="true{{ luntan.id }}">关注</span>
+                                                    </button>
+                                                {% endif %}
 
                                             </form>
 
@@ -502,7 +532,7 @@
 
                                 <br>
                                 <a href="#"><strong>{{ user.name }}</strong></a>
-                            </button>
+                                </button>
                                 <hr>
 
 

@@ -68,24 +68,26 @@
                                 <a href="/login/fensi/">我的粉丝</a>
                             </li>
                             <li>
-                                <a href="#">我的博客</a>
+                                <a href="/news/blog/">我的博客</a>
                             </li>
                         </ul>
                     </div>
                     <div class="col-md-10 column">
                         <h3>我的粉丝</h3>
                         <hr>
+                        {% for fensi in fensi_list %}
                         <div class="col-md-1 column">
-                            <img alt="300x200" src="/static/media/{{ user.touxiang }}" class=""
+                            <img alt="300x200" src="/static/media/{{ fensi.user.touxiang }}" class=""
                                  style="position: absolute;top: 20px; right: 10px;border-radius: 25px;border: none;"
                                  width="50px" height="50px"/>
                         </div>
                         <div class="col-md-11 column">
                             <br>
-                            <a href="#"><strong>{{ user.name }}</strong></a>
+                            <a href="#"><strong>{{fensi.user.name }}</strong></a>
                             <button class="btn" style="float: right">取消关注</button>
                             <hr>
                         </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>

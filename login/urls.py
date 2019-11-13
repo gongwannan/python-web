@@ -16,5 +16,8 @@ urlpatterns = [
     path('geren/', views.geren),
     path('shoucang/', views.shoucang),
     path('guanzhu/', views.guanzhu),
-    path('fensi/',views.fensi),
+    path('fensi/', views.fensi),
+    path('zhanghao/', views.zhanghao),
+    path('mima/', views.mima),
+    path('youxiang/', views.youxiang),
 ]

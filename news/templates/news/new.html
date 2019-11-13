@@ -87,17 +87,19 @@
                                                                           style="float: right">
                     {% csrf_token %}
                     <input type="hidden" name="author_id" value="{{ new.author_id }}">
+                    {% if user.id != authorid %}
 
-                    {% if new.author.name in gaunzhu %}
-                        <button type="submit" class="  pull-right"
-                                onclick="show1({{ luntan.id }})">
-                            <span id="false{{ luntan.id }}">已关注</span>
-                        </button>
-                    {% else %}
-                        <button type="submit" class=" pull-right"
-                                onclick="show1({{ luntan.id }})">
-                            <span id="true{{ luntan.id }}">关注</span>
-                        </button>
+                        {% if new.author.name in gaunzhu %}
+                            <button type="submit" class="  pull-right"
+                                    onclick="show1({{ luntan.id }})">
+                                <span id="false{{ luntan.id }}">已关注</span>
+                            </button>
+                        {% else %}
+                            <button type="submit" class=" pull-right"
+                                    onclick="show1({{ luntan.id }})">
+                                <span id="true{{ luntan.id }}">关注</span>
+                            </button>
+                        {% endif %}
                     {% endif %}
 
                 </form>

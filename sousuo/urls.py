@@ -6,4 +6,5 @@ urlpatterns = [
     path('news/', views.news),
     path('tiezi/', views.tiezi),
     path('yonghu/', views.user),
+    path('newsfw/', views.newsfw),
 ]

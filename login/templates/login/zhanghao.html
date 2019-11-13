@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block title %}
-    我的收藏
+    账号中心
 {% endblock %}
 {% block content %}
 
@@ -54,26 +54,21 @@
                 <div class="row clearfix">
                     <div class="col-md-2 column">
                         <ul class="nav nav-list " style="background: pink">
+                             <li>
+                                <a href="/login/zhanghao">账号设置首页</a>
+                            </li>
 
                             <li>
-                                <a href="/login/usermessage/">个人资料</a>
+                                <a href="/login/mima/">修改密码</a>
                             </li>
                             <li class="active">
-                                <a href="/login/shoucang/">我的收藏</a>
+                                <a href="/login/youxiang/">修改邮箱</a>
                             </li>
-                            <li>
-                                <a href="/login/guanzhu">我的关注</a>
-                            </li>
-                            <li>
-                                <a href="/login/fensi/">我的粉丝</a>
-                            </li>
-                            <li>
-                                <a href="/news/blog/">我的博客</a>
-                            </li>
+
                         </ul>
                     </div>
                     <div class="col-md-10 column">
-                        <h3>我的收藏</h3>
+                        <h3>账号安全</h3>
                         <hr>
                          {% for new in news_list %}
 

@@ -12,5 +12,7 @@ urlpatterns = [
     path('jishunews/', views.jsnews),
     path('boke/', views.boke),
     path('upload_img/', views.upload_img, name='upload_img'),
+    path('blog/', views.blog),
+    path('blogmk/<int:id>', views.blogmk),
 ]
 app_name = 'news'

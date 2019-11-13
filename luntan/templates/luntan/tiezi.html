@@ -10,7 +10,7 @@
     <script src="/static/tinymce/tinymce.min.js"></script>
 
 
-     <script>
+    <script>
         tinymce.init({
             language: "zh_CN",
             selector: 'textarea.content', //表单控件.样式名称 - 绑定textarea
@@ -30,17 +30,17 @@
             //名称前后显示，影响控件显示位置
         });
     </script>
-{#        <script type="text/javascript">#}
-{#            function cause_submit() {#}
-{#                var vl = document.getElementById('id_content').textContent;#}
-{#                var len = vl.length;#}
-{#                if (len < 10) {#}
-{#                    alert('回帖不少于十个字');#}
-{#                    return false;#}
-{#                }#}
-{#                document.getElementById('pinglun').scrollIntoView();#}
-{#            }#}
-{#        </script>#}
+    {#        <script type="text/javascript">#}
+    {#            function cause_submit() {#}
+    {#                var vl = document.getElementById('id_content').textContent;#}
+    {#                var len = vl.length;#}
+    {#                if (len < 10) {#}
+    {#                    alert('回帖不少于十个字');#}
+    {#                    return false;#}
+    {#                }#}
+    {#                document.getElementById('pinglun').scrollIntoView();#}
+    {#            }#}
+    {#        </script>#}
     <script type="text/javascript">
         function cause_reply(obj) {
             var name = "#name" + obj + ">p";
@@ -92,144 +92,167 @@
                 </ul>
                 <div class="row clearfix">
                     <div class="col-md-9 column">
-                        <div class="col-md-6 column">
-                            <ul class="breadcrumb">
-                                <li>
-                                    <a href="/news/news/">论坛首页</a>
-                                </li>
-                                <li>
-                                    <a href="/news/jishunews/">{{ luntan.belong.name }}</a>
-                                </li>
-                                <li>
-                                    <a href="/luntan/luntan/{{ luntan.id }}">{{ luntan.name }}</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6 column">
-                        </div>
-                    <div class="col-lg-12 column">
-                        <p>
-                            楼主
-                        </p>
-                        <hr>
-                        <div class="row clearfix">
-                            <div class="col-md-3 column">
 
-                                <div class="thumbnail">
-                                    <img alt="300x200"
-                                         src="/static/media/{{ tiezi.author.touxiang }}"/>
-                                    <div class="caption">
-                                        <p>
-                                            {{ tiezi.author.name }}
-                                        </p>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-9 column">
-                                <h4>
-                                    {% autoescape off %}
-                                        {{ tiezi.content }}
-                                    {% endautoescape %}
-                                </h4>
-                            </div>
-                        </div>
-                        <div class="row clearfix">
-                            <div class="col-md-3">
-
-                            </div>
-                            <div class="col-md-9">
-                                <p>
-
-                                <div>{{ tiezi.p_time }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
-                                        href="#">举报</a><a href="#" style="float:right;">只看楼主</a></div>
-                                </p>
-                                <hr>
-                            </div>
-                        </div>
-
-                        <hr>
-                        <div class="row clearfix">
-                            <div class="col-md-12 column">
-                                {% for pinglun in pinglun_list %}
-
-                                    <p>
-                                        #{{ pinglun.louceng }}
-                                    </p>
-                                    <div class="row clearfix">
-                                        <div class="col-md-3 column">
-                                            <div class="thumbnail">
-                                                <img alt="300x200" src="/static/media/{{ pinglun.author.touxiang }}"/>
-                                                <div id='name{{ pinglun.louceng }}' class="caption">
-                                                    <p>
-                                                        {{ pinglun.author.name }}
-                                                    </p>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div id="content{{ pinglun.louceng }}" class="col-md-9 column">
-                                            <h4>
-                                                {% autoescape off %}
-                                                    {{ pinglun.content }}
-                                                {% endautoescape %}
-                                            </h4>
-                                        </div>
-                                    </div>
-                                    <div class="row clearfix">
-                                        <div class="col-md-3">
-
-                                        </div>
-                                        <div class="col-md-9">
-                                            <p>
-
-                                            <div>{{ pinglun.p_time }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button
-                                                    class="btn btn-primary"
-                                                    onclick="cause_reply({{ pinglun.louceng }})">回复
-                                            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
-                                                    href="#">举报</a><a href="#" style="float:right;">只看他</a></div>
-                                            </p>
-                                            <hr>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                {% endfor %}
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row clearfix">
-                            <div class="col-md-12 column">
-                                <form name="form1" class='form-pinglun' action="/luntan/tiezi/{{ tiezi.id }}"
-                                      method="post">
+                        <ul class="breadcrumb">
+                            <li>
+                                <a href="/news/news/">论坛首页</a>
+                            </li>
+                            <li>
+                                <a href="/news/jishunews/">{{ luntan.belong.name }}</a>
+                            </li>
+                            <li>
+                                <a href="/luntan/luntan/{{ luntan.id }}">{{ luntan.name }}</a>
+                            </li>
+                            <li style="float: right">
+                                <form action="/luntan/tiezi/{{ id }}" method="post"
+                                      style="float: right">
                                     {% csrf_token %}
-                                    <div class="form-group">
-                                        <div id="pinglun">
+                                    <input type="hidden" name="tiezi_id" value="{{ tiezi.id }}">
 
 
-                                            {{ pinlun_form.content.label_tag }}
-                                            <textarea class="content" id="id_content" maxlength="21845" name="content"
-                                                      rows="10"></textarea>
+                                    {% if tiezi.id in gaunzhu %}
+                                        <button type="submit" class="btn-success" style="float: right">
+                                            <span >已收藏</span>
+                                        </button>
+                                    {% else %}
+                                        <button type="submit" class="btn-danger" style="float: right">
+                                            <span>收藏</span>
+                                        </button>
+                                    {% endif %}
 
-
-                                        </div>
-                                    </div>
-
-
-                                    <button type="reset" class="btn btn-default pull-left">重置</button>
-                                    <button type="submit" class="btn btn-primary pull-right" onclick="cause_submit()">
-                                        发表
-                                    </button>
 
                                 </form>
 
+                            </li>
+                        </ul>
 
+
+                        <div class="col-lg-12 column">
+                            <p>
+                                楼主
+                            </p>
+                            <hr>
+                            <div class="row clearfix">
+                                <div class="col-md-3 column">
+
+                                    <div class="thumbnail">
+                                        <img alt="300x200"
+                                             src="/static/media/{{ tiezi.author.touxiang }}"/>
+                                        <div class="caption">
+                                            <p>
+                                                {{ tiezi.author.name }}
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-9 column">
+                                    <h4>
+                                        {% autoescape off %}
+                                            {{ tiezi.content }}
+                                        {% endautoescape %}
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-md-3">
+
+                                </div>
+                                <div class="col-md-9">
+                                    <p>
+
+                                    <div>{{ tiezi.p_time }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                            href="#">举报</a><a href="#" style="float:right;">只看楼主</a></div>
+                                    </p>
+                                    <hr>
+                                </div>
+                            </div>
+
+                            <hr>
+                            <div class="row clearfix">
+                                <div class="col-md-12 column">
+                                    {% for pinglun in pinglun_list %}
+
+                                        <p>
+                                            #{{ pinglun.louceng }}
+                                        </p>
+                                        <div class="row clearfix">
+                                            <div class="col-md-3 column">
+                                                <div class="thumbnail">
+                                                    <img alt="300x200"
+                                                         src="/static/media/{{ pinglun.author.touxiang }}"/>
+                                                    <div id='name{{ pinglun.louceng }}' class="caption">
+                                                        <p>
+                                                            {{ pinglun.author.name }}
+                                                        </p>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="content{{ pinglun.louceng }}" class="col-md-9 column">
+                                                <h4>
+                                                    {% autoescape off %}
+                                                        {{ pinglun.content }}
+                                                    {% endautoescape %}
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="row clearfix">
+                                            <div class="col-md-3">
+
+                                            </div>
+                                            <div class="col-md-9">
+                                                <p>
+
+                                                <div>{{ pinglun.p_time }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button
+                                                        class="btn btn-primary"
+                                                        onclick="cause_reply({{ pinglun.louceng }})">回复
+                                                </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                                        href="#">举报</a><a href="#" style="float:right;">只看他</a></div>
+                                                </p>
+                                                <hr>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row clearfix">
+                                <div class="col-md-12 column">
+                                    <form name="form1" class='form-pinglun' action="/luntan/tiezi/{{ tiezi.id }}"
+                                          method="post">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <div id="pinglun">
+
+
+                                                {{ pinlun_form.content.label_tag }}
+                                                <textarea class="content" id="id_content" maxlength="21845"
+                                                          name="content"
+                                                          rows="10"></textarea>
+
+
+                                            </div>
+                                        </div>
+
+
+                                        <button type="reset" class="btn btn-default pull-left">重置</button>
+                                        <button type="submit" class="btn btn-primary pull-right"
+                                                onclick="cause_submit()">
+                                            发表
+                                        </button>
+
+                                    </form>
+
+
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-md-12 column">
+                                </div>
                             </div>
                         </div>
-                        <div class="row clearfix">
-                            <div class="col-md-12 column">
-                            </div>
-                        </div>
-                    </div>
                     </div>
                     <div class="col-md-3 column">
                         <h4>猜你喜欢</h4>

@@ -219,13 +219,32 @@ def geren(request):
     return render(request, 'login/geren.html', locals())
 
 def shoucang(request):
-    pass
+    name = request.session['user_name']
+    user = models.User.objects.get(name=name)
+    news_list = user.xihuan.all()
+    tiezi_list = user.shoucang.all()
     return render(request, 'login/shoucang.html', locals())
 
 def guanzhu(request):
-    pass
+    name = request.session['user_name']
+    user = models.User.objects.get(name=name)
+    guanzhu_list = user.follows.all()
     return render(request, 'login/guanzhu.html', locals())
 
 def fensi(request):
-    pass
+    name = request.session['user_name']
+    user = models.User.objects.get(name=name)
+    fensi_list = user.fans.all()
     return render(request, 'login/fensi.html', locals())
+
+def zhanghao(request):
+    pass
+    return render(request, 'login/zhanghao.html', locals())
+
+def mima(request):
+    pass
+    return render(request, 'login/mima.html', locals())
+
+def youxiang(request):
+    pass
+    return render(request, 'login/youxiang.html', locals())
